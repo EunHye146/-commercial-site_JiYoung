@@ -45,8 +45,8 @@ const CopyRight = styled.div`
 function Footer() {
     return (
         <>
-        <Hr/>
         <Wrapper>
+        <Hr/>
         <Block>
         QuickLink
             <ul>

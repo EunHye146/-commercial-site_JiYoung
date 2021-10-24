@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     height : 300px;
-    margin-top : 5rem;
 `;
 
 const Title = styled.div`

@@ -3,56 +3,43 @@ import styled from 'styled-components';
 import PhotoSlide from './PhotoSlide';
 import Fade from 'react-reveal/Fade';
 
-const Wrapper = styled.div`
-    height : 600px;
-`;
-
 const TextBlock = styled.div`
-    position : absolute;
-    z-index : 10;
-    padding : 30px;
+    width : 100%;
+    padding-top : 25px;
+    padding-bottom : 25px;
+    background-color : rgba(200, 200, 200, 0.3);
     text-align : center;
-    top : 50%;
-    right : 0;
-    transform: translateY(-25%);
-    background-color : rgba(255, 255, 255, 0.5);
+    @media screen and (max-width: 768px) {
+        position : absolute;
+        top : 40%;
+        color : white;
+        background: transparent; 
+    }
 `;
 
-const PhotoBlock = styled.div`
-    top : 5%;
-`;
-
-const Title = styled.div`
-    font-size : 30px;
+const H1 = styled.div`
     font-weight : bold;
+    font-size : 30px;
 `;
 
-const Content = styled.div`
-    font-size : 15px;
-    color : gray;
+const Text = styled.div`
     padding-top : 15px;
+    font-size : 15px;
 `;
-
 
 function MainCont() {
     return (
         <>
-        <Wrapper>
+        <Fade>
+            <PhotoSlide/>
             <TextBlock>
-                <Fade>
-                <Title>지영스터디</Title>
-                <Content>
-                    안정감을 주는 스터디 카페<br/>
-                    지영 스터디카페 만의 차별화된 프리미엄 무인시스템
-                </Content>
-                </Fade>
+                <H1>프리미엄 스터디카페<br/>지영스터디</H1>
+                <Text>
+                지영스터디는 ~~를 지향하는 ~~~입니다.<br/>
+                색다름을 추구하는~~~ 어쩌고..
+                </Text>
             </TextBlock>
-            <Fade>
-            <PhotoBlock>
-                <PhotoSlide/>
-            </PhotoBlock>
-            </Fade>
-        </Wrapper>
+        </Fade>
         </>
     );
 }

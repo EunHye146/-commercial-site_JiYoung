@@ -9,8 +9,7 @@ import Responsive from '../components/common/Responsive';
 import Slide from 'react-reveal/Slide';
 
 const Wrapper = styled(Responsive)`
-    overflow : hidden;
-    padding-top : 5rem;
+    padding-top : 3rem;
 `;
 
 function Main() {

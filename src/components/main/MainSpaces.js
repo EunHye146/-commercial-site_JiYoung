@@ -6,8 +6,8 @@ import img2 from '../../imgs/img2.png';
 import img3 from '../../imgs/img3.jpeg';
 
 const Wrapper = styled.div`
-    height : 300px;
     margin-top : 20px;
+    padding-bottom : 2rem;
 `;
 
 const Title = styled.div`

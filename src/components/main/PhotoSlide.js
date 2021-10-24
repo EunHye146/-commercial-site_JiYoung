@@ -8,15 +8,30 @@ import img2 from '../../imgs/img2.png';
 import img3 from '../../imgs/img3.jpeg';
 
 
-const Img = styled.img`
-    height: 500px;
+const Wrapper = styled.div`
+    height : 70vh;
+    overflow : hidden;
+    margin: 0 auto; /* 중앙 정렬 */
+    object-fit: cover;
+    @media screen and (max-width: 768px) {
+        height : 100vh;
+        overflow: hidden;
+    }
 `;
+
+const Img = styled.img`
+    @media screen and (max-width: 768px) {
+        width : 100vh;
+        height : 100vh;
+    }
+`;
+
 
 class PhotoSlide extends React.Component {
     render() {
         const settings = {
             dots: true,
-            arrows:false,
+            arrows:true,
             infinite: true,
             speed: 500,
             //얘 없으면 옆으로 슬라이드 형식
@@ -27,11 +42,11 @@ class PhotoSlide extends React.Component {
     const imgList = imgs.map((img) => <Img src={img}/>);
     return (
         <>
-        <div> 
+            <Wrapper>
             <Slider {...settings}>
                 {imgList}
             </Slider>
-        </div>
+            </Wrapper>
         </>
     );
 };
