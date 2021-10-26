@@ -7,6 +7,7 @@ import insta from '../../imgs/insta.png';
 import facebook from '../../imgs/facebook.png';
 import blog from '../../imgs/blog.png';
 import logo from '../../imgs/logo.png';
+import logo2 from '../../imgs/logo2.png';
 import Slide from 'react-reveal/Slide';
 
 const LinkTo = styled(Link)`
@@ -73,7 +74,7 @@ const NewHeader = () => {
         <>
         <div className="header">
             <div className="navBar_toggleBtn"><img className="menu_icon_img" src={menu_icon} onClick={CkMenuToggle}/></div>
-            <div><Link to="/"><LogoImg src={logo}/></Link></div>
+            <div><Link to="/"><LogoImg src={logo2}/></Link></div>
             <ul className="navBar_menus">
                 <li className="navBar_menus_menu">
                     <LinkTo to="/services">서비스</LinkTo>
