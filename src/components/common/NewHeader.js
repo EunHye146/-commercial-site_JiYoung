@@ -37,6 +37,10 @@ const Img = styled.img`
   }
 `;
 
+const User = styled.div`
+  font-size : 12px;
+`;
+
 const NewHeader = () => {
     const [menuToggle, setMenuToggle] = useState(false);
     const [snsToggle, setSnsToggle] = useState(false);
@@ -70,6 +74,9 @@ const NewHeader = () => {
             setSnsToggle(!snsToggle);
         }
     }
+
+    const user = window.sessionStorage.getItem('id');
+
     return(
         <>
         <div className="header">
@@ -92,9 +99,9 @@ const NewHeader = () => {
                     <LinkTo to="/notice">NOTICE</LinkTo>
                 </li>
             </ul>
-
             <div className="sns_drop_icon" onClick={CkSnsToggle}>sns +</div>
             <ul className="sns_icons">
+            {user ? <User>{user}</User> : <></>}
                 <li className="sns_icons_icon">
                     <a className="black"
                     target="_blank"
