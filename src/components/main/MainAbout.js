@@ -7,6 +7,8 @@ import Slide from 'react-reveal/Slide';
 
 const Wrapper = styled.div`
     height : auto;
+    background : white;
+    padding : 50px 150px 0px 150px;
 `;
 
 const Title = styled.div`

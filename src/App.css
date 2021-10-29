@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-weight: 50;
+  src: url("./fonts/NanumBarunGothic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-weight: 100;
+  src: url("./fonts/NanumBarunGothicBold.ttf") format("truetype");
+}

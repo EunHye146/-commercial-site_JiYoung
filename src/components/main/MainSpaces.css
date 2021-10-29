@@ -8,6 +8,8 @@
 }
 .text { 
     display: none;
+    text-align: center;
+    width : 200px;
 }
 .image:hover > .text { 
     display: block;

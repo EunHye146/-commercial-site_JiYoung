@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import img1 from '../../imgs/img1.jpeg';
-import img2 from '../../imgs/img2.png';
+import studyroomA from '../../imgs/studyroomA.JPG';
+import highpart from '../../imgs/highpart.JPG';
 import img3 from '../../imgs/img3.jpeg';
 import './MainSpaces.css';
 
@@ -44,15 +44,15 @@ const ImgListWrapper = styled.div`
 function MainSpaces() {
     const spaces = [
         {
-            content : "스터디룸A",
-            img : img1
+            content : "스터디룸 6인실",
+            img : studyroomA
         },
         {
-            content: "스터디룸B",
-            img : img2
+            content: "하이파티션 ZONE",
+            img : highpart
         },
         {
-            content: "노트북존",
+            content: "카페 ZONE",
             img : img3
         }
     ];

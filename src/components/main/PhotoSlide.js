@@ -6,11 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 import img1 from '../../imgs/img1.jpeg';
 import img2 from '../../imgs/img2.png';
 import img3 from '../../imgs/img3.jpeg';
+import mainImg from '../../imgs/mainImg.jpg';
 
 
 const Wrapper = styled.div`
-    height : 70vh;
-    overflow : hidden;
     margin: 0 auto; /* 중앙 정렬 */
     object-fit: cover;
     @media screen and (max-width: 768px) {
@@ -43,9 +42,7 @@ class PhotoSlide extends React.Component {
     return (
         <>
             <Wrapper>
-            <Slider {...settings}>
-                {imgList}
-            </Slider>
+            <Slider><Img src={mainImg}/></Slider>
             </Wrapper>
         </>
     );
