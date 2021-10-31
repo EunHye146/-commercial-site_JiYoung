@@ -37,12 +37,23 @@ const User = styled.div`
   font-size : 12px;
 `;
 
+const Blog = styled.div`
+  color : black;
+  cursor : pointer;
+  font-weight : 200;
+  letter-spacing : 0.1rem;
+  &:hover {
+      color : #099e18;
+      font-weight : 500;
+  }
+`;
+
 const NewHeader = () => {
     const [menuToggle, setMenuToggle] = useState(false);
     const [snsToggle, setSnsToggle] = useState(false);
 
     const CkMenuToggle = () => {
-        document.getElementById('toggleSns').style.display = 'none';
+        //document.getElementById('toggleSns').style.display = 'none';
         setSnsToggle(false);
         if (menuToggle) {
             setMenuToggle(!menuToggle);
@@ -73,6 +84,10 @@ const NewHeader = () => {
 
     const user = window.sessionStorage.getItem('id');
 
+    const openBlog = () => {
+        window.open('https://section.blog.naver.com/', '_blank')
+    }
+
     return(
         <>
         <div className="header">
@@ -95,28 +110,7 @@ const NewHeader = () => {
                     <LinkTo to="/notice">NOTICE</LinkTo>
                 </li>
             </ul>
-            <div className="sns_drop_icon" onClick={CkSnsToggle}>sns +</div>
-            <ul className="sns_icons">
-            {user ? <User>{user}</User> : <></>}
-                <li className="sns_icons_icon">
-                    <a className="black"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.instagram.com/"><Img src={insta}/></a>
-                </li>
-                <li className="sns_icons_icon">
-                    <a className="black"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.facebook.com/"><Img src={facebook}/></a>
-                </li>
-                <li className="sns_icons_icon">
-                    <a className="black"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="http://blog.naver.com"><Img src={blog}/></a>
-                </li>
-            </ul>
+            <Blog onClick={openBlog}>blog</Blog>
         </div>
          <Slide top when={menuToggle}>
             <ul id="toggleMenus">
@@ -134,28 +128,6 @@ const NewHeader = () => {
                 </li>
                 <li className="toggleMenus_menu">
                     <LinkTo to="/notice">NOTICE</LinkTo>
-                </li>
-            </ul>
-        </Slide>
-        <Slide top when={snsToggle}>
-            <ul id="toggleSns">
-                <li className="toggleSns_icon">
-                    <a className="black"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.instagram.com/"><Img src={insta}/></a>
-                </li>
-                <li className="toggleSns_icon">
-                    <a className="black"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.facebook.com/"><Img src={facebook}/></a>
-                </li>
-                <li className="toggleSns_icon">
-                    <a className="black"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="http://blog.naver.com"><Img src={blog}/></a>
                 </li>
             </ul>
         </Slide>

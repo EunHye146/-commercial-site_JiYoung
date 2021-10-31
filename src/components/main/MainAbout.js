@@ -4,11 +4,14 @@ import img1 from '../../imgs/img1.jpeg';
 import img2 from '../../imgs/img2.png';
 import img3 from '../../imgs/img3.jpeg';
 import Slide from 'react-reveal/Slide';
+import Responsive from '../common/Responsive';
 
 const Wrapper = styled.div`
-    height : auto;
-    background : white;
-    padding : 50px 150px 0px 150px;
+    width: 1150px;
+    margin: 0 auto; /* 중앙 정렬 */
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const Title = styled.div`

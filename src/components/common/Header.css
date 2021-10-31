@@ -34,7 +34,6 @@
   }
   
   .menu_icon_img {
-    width : 2rem;
     height: 1.5rem;
     cursor: pointer;
   }
@@ -79,7 +78,6 @@
     .navBar_toggleBtn {
       display: flex;
       padding : 10px;
-      width : 15%;
     }
     .sns_icons {
         display: none;
@@ -87,7 +85,6 @@
     .sns_drop_icon {
       display: block;
       padding: 10px;
-      width: 15%;
       text-align: right;
     }
   }

@@ -3,6 +3,7 @@ import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
 import styled from 'styled-components';
 import Responsive from '../components/common/Responsive';
+import Map from '../components/Location/Map';
 
 const Wrapper = styled(Responsive)`
     overflow : auto;
@@ -21,9 +22,8 @@ function Location() {
         <>
             <Header/>
             <Wrapper>
-            <Div>
-                location
-            </Div>
+            address : 경기도 파주시 미래로 622 대흥프라자 401,402호
+            <Map/>
             </Wrapper>
             <Footer/>
         </>
