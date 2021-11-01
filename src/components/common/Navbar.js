@@ -15,7 +15,7 @@ const LinkTo = styled(Link)`
     font-size: 15px;
   &:hover{
     border-bottom: 1px solid gray;
-    color : gray;
+    color : #f5d35b;
     padding-bottom: 3px;
     trasition: all 0.2s ease;
     transition-duration: 0.3s;

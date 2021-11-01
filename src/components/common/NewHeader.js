@@ -15,7 +15,7 @@ const LinkTo = styled(Link)`
     color: black;
     font-size: 15px;
   &:hover{
-    color : gray;
+    color : #e8c74d;
   }
 `
 

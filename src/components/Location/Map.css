@@ -1,0 +1,18 @@
+#infobox { 
+    width: 150px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+#link {
+    text-decoration:none;
+    color : black;
+    font-size : 13px;
+    font-weight: 400;
+}
+
+#link:hover  {
+    color : #2228a8;
+}
