@@ -3,6 +3,8 @@ import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
 import styled from 'styled-components';
 import Responsive from '../components/common/Responsive';
+import NoticeCont from '../components/Notice/NoticeCont';
+import Events from '../components/Notice/Events';
 
 const Wrapper = styled(Responsive)`
     padding-top : 4rem;
@@ -11,15 +13,16 @@ const Wrapper = styled(Responsive)`
 const Cate = styled.div`
     padding-top : 40px;
     padding-bottom : 10px;
-    font-size : 20px;
     #noti {
         margin-right : 40px;
         font-weight : 900;
         cursor : pointer;
+        font-size : 20px;
     }
     #event {
         cursor : pointer;
         font-weight : 100;
+        font-size : 17px;
     }
     #noti:hover, #event:hover {
         color : gray;
@@ -33,14 +36,18 @@ function Notice() {
         setEvent(false);
         setNoti(true);
         document.getElementById("noti").style.fontWeight = "900";
+        document.getElementById("noti").style.fontSize = "20px";
         document.getElementById("event").style.fontWeight = "100";
+        document.getElementById("event").style.fontSize = "17px";
     };
 
     const showEvent = () => {
         setNoti(false);
         setEvent(true);
         document.getElementById("event").style.fontWeight = "900";
+        document.getElementById("event").style.fontSize = "20px";
         document.getElementById("noti").style.fontWeight = "100";
+        document.getElementById("noti").style.fontSize = "17px";
     };
     return (
         <>
@@ -51,8 +58,8 @@ function Notice() {
                 <span id="event" onClick={showEvent}>EVENT</span>
             </Cate>
             <hr/>
-            { noti && <div>noti~</div>}
-            { event && <div>event~</div>}
+            { noti && <NoticeCont/>}
+            { event && <Events/>}
             </Wrapper>
             <Footer/>
         </>

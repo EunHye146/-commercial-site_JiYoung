@@ -13,16 +13,12 @@ const Wrapper = styled(Responsive)`
   padding-top : 50px;
   padding-bottom : 50px;
   margin-bottom : 50px;
-  background : #fffefa;
-  border-radius : 10px;
-  box-shadow : 3px 3px 3px 3px #d9d7cc;
 `;
 
 const Title = styled.div`
   font-size : 30px;
   font-weight : bold;
-  padding-top : 30px;
-  padding-bottom : 30px;
+  margin-top : 35px;
   text-align : center;
 `;
 
@@ -32,6 +28,9 @@ const TextWrapper = styled.div`
   height : 400px;
   display : inline-block;
   margin-left : 15px;
+  background : #fffefa;
+  border-radius : 10px;
+  box-shadow : 3px 3px 3px 3px #d9d7cc;
 `;
 
 const Text = styled.div`
@@ -43,7 +42,6 @@ const Text = styled.div`
   text-align : left;
   padding-bottom : 20px;
   margin : auto;
-
 `;
 
 const Div = styled.div`
