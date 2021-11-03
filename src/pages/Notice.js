@@ -17,12 +17,12 @@ const Cate = styled.div`
         margin-right : 40px;
         font-weight : 900;
         cursor : pointer;
-        font-size : 20px;
+        font-size : 18px;
     }
     #event {
         cursor : pointer;
         font-weight : 100;
-        font-size : 17px;
+        font-size : 15px;
     }
     #noti:hover, #event:hover {
         color : gray;
@@ -36,18 +36,18 @@ function Notice() {
         setEvent(false);
         setNoti(true);
         document.getElementById("noti").style.fontWeight = "900";
-        document.getElementById("noti").style.fontSize = "20px";
+        document.getElementById("noti").style.fontSize = "18px";
         document.getElementById("event").style.fontWeight = "100";
-        document.getElementById("event").style.fontSize = "17px";
+        document.getElementById("event").style.fontSize = "15px";
     };
 
     const showEvent = () => {
         setNoti(false);
         setEvent(true);
         document.getElementById("event").style.fontWeight = "900";
-        document.getElementById("event").style.fontSize = "20px";
+        document.getElementById("event").style.fontSize = "18px";
         document.getElementById("noti").style.fontWeight = "100";
-        document.getElementById("noti").style.fontSize = "17px";
+        document.getElementById("noti").style.fontSize = "15px";
     };
     return (
         <>

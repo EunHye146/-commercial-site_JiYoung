@@ -3,25 +3,25 @@ import styled from 'styled-components';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import img1 from '../../imgs/img1.jpeg';
-import img2 from '../../imgs/img2.png';
-import img3 from '../../imgs/img3.jpeg';
-import mainImg from '../../imgs/mainImg.jpg';
+import mainImg1 from '../../imgs/mainImg1.jpg';
+import mainImg2 from '../../imgs/mainImg2.jpeg';
+import mainImg3 from '../../imgs/mainImg3.png';
+import mainImg4 from '../../imgs/mainImg4.jpeg';
 
 
 const Wrapper = styled.div`
     margin: 0 auto; /* 중앙 정렬 */
     object-fit: cover;
+    overflow:hidden;
     @media screen and (max-width: 768px) {
-        height : 100vh;
-        overflow: hidden;
+        margin:0 auto;
     }
 `;
 
 const Img = styled.img`
     @media screen and (max-width: 768px) {
-        width : 100vh;
-        height : 100vh;
+        height : 90vh;
+        object-fit:cover;
     }
 `;
 
@@ -37,12 +37,12 @@ class PhotoSlide extends React.Component {
             fade:true,
             autoplay: true,
         };
-    const imgs = [img1, img2, img3];
+    const imgs = [mainImg1, mainImg4];
     const imgList = imgs.map((img) => <Img src={img}/>);
     return (
         <>
             <Wrapper>
-            <Slider><Img src={mainImg}/></Slider>
+            <Slider {...settings}>{imgList}</Slider>
             </Wrapper>
         </>
     );

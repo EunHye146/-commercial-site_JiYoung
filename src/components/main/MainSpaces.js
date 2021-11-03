@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import studyroomA from '../../imgs/studyroomA.JPG';
 import highpart from '../../imgs/highpart.JPG';
-import img3 from '../../imgs/img3.jpeg';
+import cafezone1 from '../../imgs/cafezone1.jpg';
 import './MainSpaces.css';
 
 const Wrapper = styled.div`
@@ -53,7 +53,7 @@ function MainSpaces() {
         },
         {
             content: "카페 ZONE",
-            img : img3
+            img : cafezone1
         }
     ];
     const imgList = spaces.map(space => <div className="image"><img src = {space.img} alt="?"/>

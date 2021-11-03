@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Main from '../pages/Main';
 import Services from '../pages/Services';
-import Space from '../pages/Space';
+import Space from '../pages/newSpace';
 import Location from '../pages/Location';
 import Product from '../pages/Product';
 import Notice from '../pages/Notice';

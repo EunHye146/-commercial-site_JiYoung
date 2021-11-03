@@ -3,10 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import './Header.css';
 import menu_icon from '../../imgs/menu_icon.png';
-import insta from '../../imgs/insta.png';
-import facebook from '../../imgs/facebook.png';
-import blog from '../../imgs/blog.png';
-import logo from '../../imgs/logo.png';
 import logo2 from '../../imgs/logo2.png';
 import Slide from 'react-reveal/Slide';
 

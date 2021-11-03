@@ -5,20 +5,19 @@ import './Map.css';
 import Responsive from '../common/Responsive';
 
 const Spacer = styled.div`
-  height : 4rem;
+  height : 3.5rem;
 `;
 
 const Wrapper = styled(Responsive)`
   text-align : center;
-  padding-top : 50px;
-  padding-bottom : 50px;
-  margin-bottom : 50px;
+  margin-top : 45px;
+  margin-bottom : 115px;
 `;
 
 const Title = styled.div`
-  font-size : 30px;
+  font-size : 25px;
   font-weight : bold;
-  margin-top : 35px;
+  margin-top : 45px;
   text-align : center;
 `;
 

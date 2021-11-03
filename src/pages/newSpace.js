@@ -9,89 +9,60 @@ import a2 from '../imgs/highpart.JPG';
 import a3 from '../imgs/studyroomA.JPG';
 import a4 from '../imgs/mainImg3.png';
 import a5 from '../imgs/highpart.JPG';
-import MainAbout from '../components/main/MainAbout';
 
-const Wrapper = styled.div`
-    padding-top : 3.5rem;
-    padding-bottom : 50px;
-    background : green;
-`;
-
-
-const Category = styled(Responsive)`
-    background: lightgray;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width : 50%;
-    height: 3rem;
-    margin-top : 30px;
-    margin-bottom : 30px;
-    border-radius : 3px;
-    ul {
-        display: flex;
-        list-style: none;
-        justify-content: space-around;
-        padding-left : 0px;
-        width: 100%;
-    }
-    @media screen and (max-width: 768px) {
-        width : 90%;
-    }
-    .cate {
-        color : gray;
-        cursor : pointer;
-        font-size : 13px;
-    }
-    #first {
-        color : black;
-        font-size : 15px;
-        font-weight : bold;
-    }
-`;
-
-const ImgWrap = styled(Responsive)`
-    background : brown;
-`;
-
-const MainSlide = styled.div`
+const Wrapper = styled(Responsive)`
     position : relative;
+    padding-top : 3.5rem;
+    height : 700px;
 `;
 
-const MainImg = styled.div`
-    width : 50%;
-    margin: 0 auto;
+const Category = styled.div`
+    position : absolute;
+    border : 1px solid;
+    width : 16%;
+    ul {
+        list-style : none;
+    }
+    li {
+        padding-top : 15px;
+        padding-bottom : 15px;
+    }
     @media screen and (max-width: 768px) {
-        width : 80%;
+        position : static;
+        width : 75%;
+        margin : 0 auto;
+        font-size : 12px;
+        overflow : hidden;
+        ul {
+            display: flex;
+            justify-content: space-around;
+            padding-left : 0px;
+        }
+        li {
+            padding-top : 0;
+            padding-bottom : 0;
+        }
     }
 `;
 
-const SubImgsSlide = styled.div`
-    width : 80%;
-    margin: 0 auto;
-    @media screen and (max-width: 768px) {
-        width : 90%;
-    }
-`;
-
-const SubImg = styled.img`
-
-`;
-
-const PrevButton = styled.button`
+const ImgWrap = styled.div`
     position : absolute;
-    top : 50%;
-    left : 0;
-    transform : translateY(-50%);
-    width : 100px;
-`;
-const NextButton = styled.button`
-    position : absolute;
-    top : 50%;
     right : 0;
-    transform : translateY(-50%);
-    width : 100px;
+    width : 80%;
+    @media screen and (max-width: 768px) {
+        position : static;
+        width : 100%;
+    }
+    #main-slide-wrapper {
+    }
+    #main-slide {
+        width : 60%;
+        margin : 0 auto;
+    }
+    #subslide {
+    }
 `;
+
 
 
 function Space() {
@@ -156,28 +127,26 @@ function Space() {
                 </ul>
             </Category>
             <ImgWrap>
-            <MainSlide>
-            <MainImg>
-            <Slick ref={mainSlickRef} asNavFor={pagingSlick} {...mainSettings}>
-            <img src={a1}/>
-            <img src={a2}/>
-            <img src={a3}/>
-            <img src={a4}/>
-            <img src={a5}/>
-            </Slick>
-            </MainImg>
-            <PrevButton onClick={onClickPrev(mainSlickRef)}>이전</PrevButton>
-            <NextButton onClick={onClickNext(mainSlickRef)}>후</NextButton>
-            </MainSlide>
-            <SubImgsSlide>
-            <Slick ref={pagingSlickRef} asNavFor={mainSlick} {...pagingSettings}>
-            <SubImg src={a1}/>
-            <SubImg src={a2}/>
-            <SubImg src={a3}/>
-            <SubImg src={a4}/>
-            <SubImg src={a5}/>
-            </Slick>
-            </SubImgsSlide>
+            <div id="main-slide-wrapper">
+                <div id="main-slide">
+                    <Slick ref={mainSlickRef} asNavFor={pagingSlick} {...mainSettings}>
+                        <img src={a1}/>
+                        <img src={a2}/>
+                        <img src={a3}/>
+                        <img src={a4}/>
+                        <img src={a5}/>
+                    </Slick>
+                </div>
+            </div>
+            <div id="subslide">
+                <Slick ref={pagingSlickRef} asNavFor={mainSlick} {...pagingSettings}>
+                    <img src={a1}/>
+                    <img src={a2}/>
+                    <img src={a3}/>
+                    <img src={a4}/>
+                    <img src={a5}/>
+                </Slick>
+            </div>
             </ImgWrap>
             </Wrapper>
             <Footer/>

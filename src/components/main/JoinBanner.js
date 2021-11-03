@@ -94,7 +94,12 @@ const Button = styled.button`
 function JoinBanner() {
     const [showModal, setShowModal] = useState(false);
     const openModal = () => {
-        setShowModal(true);
+        if (showModal) {
+            setShowModal(false);
+        }
+        else {
+            setShowModal(true);
+        }
     }
     const closeModal = () => {
         setShowModal(false);
