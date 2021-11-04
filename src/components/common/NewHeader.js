@@ -91,19 +91,19 @@ const NewHeader = () => {
             <div><Link to="/"><LogoImg src={logo2}/></Link></div>
             <ul className="navBar_menus">
                 <li className="navBar_menus_menu">
-                    <LinkTo to="/services">서비스</LinkTo>
+                    <LinkTo to="/space">공간</LinkTo>
                 </li>
                 <li className="navBar_menus_menu">
                     <LinkTo to="/location">위치</LinkTo>
                 </li>
                 <li className="navBar_menus_menu">
-                    <LinkTo to="/space">공간</LinkTo>
-                </li>
-                <li className="navBar_menus_menu">
                     <LinkTo to="/product">이용요금</LinkTo>
                 </li>
                 <li className="navBar_menus_menu">
-                    <LinkTo to="/notice">NOTICE</LinkTo>
+                    <LinkTo to="/notice">공지사항</LinkTo>
+                </li>
+                <li className="navBar_menus_menu">
+                    <LinkTo to="/join">가맹문의</LinkTo>
                 </li>
             </ul>
             <Blog onClick={openBlog}>blog</Blog>

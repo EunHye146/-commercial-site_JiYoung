@@ -23,7 +23,7 @@ function Services() {
         <Header/>
         <Wrapper>
             <Div>
-                services
+                가맹문의
             </Div>
         </Wrapper>
         <Footer/>

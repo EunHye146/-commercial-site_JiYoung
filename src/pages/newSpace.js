@@ -4,28 +4,61 @@ import Footer from '../components/common/Footer';
 import styled from 'styled-components';
 import Responsive from '../components/common/Responsive';
 import Slick from 'react-slick';
-import a1 from '../imgs/cafezone1.jpg';
-import a2 from '../imgs/highpart.JPG';
-import a3 from '../imgs/studyroomA.JPG';
-import a4 from '../imgs/mainImg3.png';
-import a5 from '../imgs/highpart.JPG';
+import leftarrow from '../imgs/leftarrow.png';
+import rightarrow from '../imgs/rightarrow.png';
+import first1 from '../imgs/first/f1.jpg';
+import first2 from '../imgs/first/f2.jpg';
+import first3 from '../imgs/first/f3.jpg';
+import first4 from '../imgs/first/f4.jpg';
+import first5 from '../imgs/first/f5.jpg';
+import first6 from '../imgs/first/f6.jpg';
+import first7 from '../imgs/first/f7.jpg';
+import first8 from '../imgs/first/f8.jpg';
+import second1 from '../imgs/second/s1.JPG';
+import second2 from '../imgs/second/s2.JPG';
+import second3 from '../imgs/second/s3.JPG';
+import second4 from '../imgs/second/s4.JPG';
+import second5 from '../imgs/second/s5.JPG';
+import third1 from '../imgs/third/t1.JPG';
+import third2 from '../imgs/third/t2.JPG';
+import third3 from '../imgs/third/t3.JPG';
+import third4 from '../imgs/third/t4.JPG';
+import third5 from '../imgs/third/t5.JPG';
+import fourth1 from '../imgs/fourth/f1.jpg';
+import fourth2 from '../imgs/fourth/f2.jpg';
+import fourth3 from '../imgs/fourth/f3.jpg';
+import fourth4 from '../imgs/fourth/f4.jpg';
+import fifth1 from '../imgs/fifth/f1.png';
+import fifth2 from '../imgs/fifth/f2.jpg';
+import fifth3 from '../imgs/fifth/f3.png';
+
+
 
 const Wrapper = styled(Responsive)`
     position : relative;
-    padding-top : 3.5rem;
+    padding-top : 7rem;
     height : 700px;
 `;
 
 const Category = styled.div`
     position : absolute;
     border : 1px solid;
-    width : 16%;
+    border-radius : 5px;
+    width : 15%;
+    font-size : 13px;
+    color : gray;
     ul {
         list-style : none;
     }
     li {
         padding-top : 15px;
         padding-bottom : 15px;
+        cursor : pointer;
+    }
+    #first {
+        font-size : 15px;
+        font-weight : bold;
+        color : black;
     }
     @media screen and (max-width: 768px) {
         position : static;
@@ -49,6 +82,7 @@ const ImgWrap = styled.div`
     position : absolute;
     right : 0;
     width : 80%;
+    text-align : center;
     @media screen and (max-width: 768px) {
         position : static;
         width : 100%;
@@ -56,11 +90,38 @@ const ImgWrap = styled.div`
     #main-slide-wrapper {
     }
     #main-slide {
-        width : 60%;
+        width : 70%;
         margin : 0 auto;
+        overflow : hidden;
     }
     #subslide {
+        cursor : pointer;
     }
+    h2 {
+        margin-top : 0;
+    }
+`;
+
+const PrevButton = styled.img`
+    position : absolute;
+    top : 50%;
+    left : 0;
+    transform : translateY(-50%);
+    width : 30px;
+    cursor : pointer;
+`;
+
+const NextButton = styled.img`
+    position : absolute;
+    top : 50%;
+    right : 0;
+    transform : translateY(-50%);
+    width : 30px;
+    cursor : pointer;
+`;
+
+const Img = styled.img`
+    border : 3px solid white;
 `;
 
 
@@ -71,7 +132,10 @@ function Space() {
     const mainSlickRef = useRef(null);
     const pagingSlickRef = useRef(null);
 
-    useEffect(() => { setMainSlick(mainSlickRef.current); setPagingSlick(pagingSlickRef.current); }, []);
+    useEffect(() => { 
+        setMainSlick(mainSlickRef.current); 
+        setPagingSlick(pagingSlickRef.current); 
+    }, []);
 
     const mainSettings =
     {
@@ -95,23 +159,40 @@ function Space() {
     const onClickPrev = useCallback((ref) => () => ref.current.slickPrev(), []); 
     const onClickNext = useCallback((ref) => () => ref.current.slickNext(), []);
 
-    const [cate1, setCate1] = useState(true);
-    const [cate2, setCate2] = useState(false);
-    const [cate3, setCate3] = useState(false);
-    const [cate4, setCate4] = useState(false);
-    const [cate5, setCate5] = useState(false);
-
+    const [clickedCate, setClickedCate] = useState([first1, first2, first3, first4, first5, first6, first7, first8]);
+    const [title, setTitle] = useState('내부');
 
     var cate = document.getElementsByClassName('cate');
     const categoryClick = (e) => {
+        const clicked = e.target;
         for (var i= 0; i<cate.length ; i++) {
             cate[i].style.fontSize = "13px";
             cate[i].style.color = "gray";
             cate[i].style.fontWeight = "normal";
         }
-        e.target.style.fontSize = "15px";
-        e.target.style.color = "black";
-        e.target.style.fontWeight = "bold";
+        clicked.style.fontSize = "15px";
+        clicked.style.color = "black";
+        clicked.style.fontWeight = "bold";
+        if (clicked.id === 'first') {
+            setClickedCate([first1, first2, first3, first4, first5, first6, first7, first8]);
+            setTitle('내부');
+        }
+        else if (clicked.id === 'second') {
+            setClickedCate([second1, second2, second3, second4, second5]);
+            setTitle('스터디카페');
+        }
+        else if (clicked.id === 'third') {
+            setClickedCate([third1, third2, third3, third4, third5]);
+            setTitle('스터디룸');
+        }
+        else if (clicked.id === 'fourth') {
+            setClickedCate([fourth1, fourth2, fourth3, fourth4]);
+            setTitle('카페존');
+        }
+        else {
+            setClickedCate([fifth1, fifth2, fifth3]);
+            setTitle('기타');
+        }
     }
     return (
         <>
@@ -120,31 +201,26 @@ function Space() {
             <Category>
                 <ul>
                     <li className="cate" id="first" onClick={categoryClick}>내부</li>
-                    <li className="cate" onClick={categoryClick}>스터디카페</li>
-                    <li className="cate" onClick={categoryClick}>스터디룸</li>
-                    <li className="cate" onClick={categoryClick}>카페존</li>
-                    <li className="cate" onClick={categoryClick}>기타</li>
+                    <li className="cate" id="second" onClick={categoryClick}>스터디카페</li>
+                    <li className="cate" id="third" onClick={categoryClick}>스터디룸</li>
+                    <li className="cate" id="fourth" onClick={categoryClick}>카페존</li>
+                    <li className="cate" id="fifth" onClick={categoryClick}>기타</li>
                 </ul>
             </Category>
             <ImgWrap>
+            <h2>{title}</h2>
             <div id="main-slide-wrapper">
                 <div id="main-slide">
                     <Slick ref={mainSlickRef} asNavFor={pagingSlick} {...mainSettings}>
-                        <img src={a1}/>
-                        <img src={a2}/>
-                        <img src={a3}/>
-                        <img src={a4}/>
-                        <img src={a5}/>
+                        {clickedCate.map((first) => <Img src={first}/>)}
                     </Slick>
                 </div>
+                <PrevButton src={leftarrow} onClick={onClickPrev(mainSlickRef)}/>
+                <NextButton src={rightarrow} onClick={onClickNext(mainSlickRef)}/>
             </div>
             <div id="subslide">
                 <Slick ref={pagingSlickRef} asNavFor={mainSlick} {...pagingSettings}>
-                    <img src={a1}/>
-                    <img src={a2}/>
-                    <img src={a3}/>
-                    <img src={a4}/>
-                    <img src={a5}/>
+                    {clickedCate.map((first) => <Img src={first}/>)}
                 </Slick>
             </div>
             </ImgWrap>
