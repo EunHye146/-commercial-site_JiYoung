@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
-import mainImg2 from '../../imgs/mainImg2.jpeg';
-import mainImg3 from '../../imgs/mainImg3.png';
+import mainImg1 from '../../imgs/mainabout1.png';
+import mainImg2 from '../../imgs/mainabout2.png';
 import Slide from 'react-reveal/Slide';
 import Fade from 'react-reveal/Fade';
 
@@ -74,7 +74,7 @@ function MainAbout() {
             <Fade>
             <Block>
                 <div className="left">
-                    <img src={mainImg2}/>
+                    <img src={mainImg1}/>
                 </div>
                 <div className="right">
                     <Text>
@@ -87,7 +87,7 @@ function MainAbout() {
             </Block>
             <Block>
                 <div className="right">
-                    <img src={mainImg3}/>
+                    <img src={mainImg2}/>
                 </div>
                 <div className="left">
                     <Text>

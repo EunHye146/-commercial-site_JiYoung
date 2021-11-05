@@ -6,31 +6,33 @@ import Responsive from '../components/common/Responsive';
 import Slick from 'react-slick';
 import leftarrow from '../imgs/leftarrow.png';
 import rightarrow from '../imgs/rightarrow.png';
-import first1 from '../imgs/first/f1.jpg';
-import first2 from '../imgs/first/f2.jpg';
-import first3 from '../imgs/first/f3.jpg';
-import first4 from '../imgs/first/f4.jpg';
-import first5 from '../imgs/first/f5.jpg';
-import first6 from '../imgs/first/f6.jpg';
-import first7 from '../imgs/first/f7.jpg';
-import first8 from '../imgs/first/f8.jpg';
-import second1 from '../imgs/second/s1.JPG';
-import second2 from '../imgs/second/s2.JPG';
-import second3 from '../imgs/second/s3.JPG';
-import second4 from '../imgs/second/s4.JPG';
-import second5 from '../imgs/second/s5.JPG';
-import third1 from '../imgs/third/t1.JPG';
-import third2 from '../imgs/third/t2.JPG';
-import third3 from '../imgs/third/t3.JPG';
-import third4 from '../imgs/third/t4.JPG';
-import third5 from '../imgs/third/t5.JPG';
-import fourth1 from '../imgs/fourth/f1.jpg';
-import fourth2 from '../imgs/fourth/f2.jpg';
-import fourth3 from '../imgs/fourth/f3.jpg';
-import fourth4 from '../imgs/fourth/f4.jpg';
-import fifth1 from '../imgs/fifth/f1.png';
-import fifth2 from '../imgs/fifth/f2.jpg';
-import fifth3 from '../imgs/fifth/f3.png';
+import high1 from '../imgs/high/01.jpg';
+import high2 from '../imgs/high/02.jpg';
+import high3 from '../imgs/high/03.jpg';
+import high4 from '../imgs/high/04.jpg';
+import high5 from '../imgs/high/05.jpg';
+import high6 from '../imgs/high/06.jpg';
+import low1 from '../imgs/low/01.JPG';
+import low2 from '../imgs/low/02.JPG';
+import low3 from '../imgs/low/03.JPG';
+import low4 from '../imgs/low/04.JPG';
+import low5 from '../imgs/low/05.JPG';
+import flat1 from '../imgs/flat/01.jpg';
+import flat2 from '../imgs/flat/02.jpg';
+import flat3 from '../imgs/flat/03.jpg';
+import room1 from '../imgs/room/01.JPG';
+import room2 from '../imgs/room/02.JPG';
+import room3 from '../imgs/room/03.JPG';
+import room4 from '../imgs/room/04.JPG';
+import cafe1 from '../imgs/cafe/01.jpg';
+import cafe2 from '../imgs/cafe/02.jpg';
+import cafe3 from '../imgs/cafe/03.jpg';
+import cafe4 from '../imgs/cafe/04.jpg';
+import other1 from '../imgs/other/01.jpg';
+import other2 from '../imgs/other/02.jpg';
+import other3 from '../imgs/other/03.jpg';
+import other4 from '../imgs/other/04.jpg';
+import other5 from '../imgs/other/05.jpg';
 
 
 
@@ -44,8 +46,8 @@ const Category = styled.div`
     position : absolute;
     border : 1px solid;
     border-radius : 5px;
-    width : 15%;
-    font-size : 13px;
+    width : 20%;
+    font-size : 15px;
     color : gray;
     ul {
         list-style : none;
@@ -55,8 +57,7 @@ const Category = styled.div`
         padding-bottom : 15px;
         cursor : pointer;
     }
-    #first {
-        font-size : 15px;
+    #high {
         font-weight : bold;
         color : black;
     }
@@ -81,7 +82,7 @@ const Category = styled.div`
 const ImgWrap = styled.div`
     position : absolute;
     right : 0;
-    width : 80%;
+    width : 75%;
     text-align : center;
     @media screen and (max-width: 768px) {
         position : static;
@@ -159,40 +160,37 @@ function Space() {
     const onClickPrev = useCallback((ref) => () => ref.current.slickPrev(), []); 
     const onClickNext = useCallback((ref) => () => ref.current.slickNext(), []);
 
-    const [clickedCate, setClickedCate] = useState([first1, first2, first3, first4, first5, first6, first7, first8]);
-    const [title, setTitle] = useState('내부');
+    const [clickedCate, setClickedCate] = useState([high1,high2,high3,high4,high5,high6]);
+    const [title, setTitle] = useState('하이파티션');
 
     var cate = document.getElementsByClassName('cate');
     const categoryClick = (e) => {
         const clicked = e.target;
         for (var i= 0; i<cate.length ; i++) {
-            cate[i].style.fontSize = "13px";
             cate[i].style.color = "gray";
             cate[i].style.fontWeight = "normal";
         }
-        clicked.style.fontSize = "15px";
         clicked.style.color = "black";
         clicked.style.fontWeight = "bold";
-        if (clicked.id === 'first') {
-            setClickedCate([first1, first2, first3, first4, first5, first6, first7, first8]);
-            setTitle('내부');
+        if (clicked.id === 'high') {
+            setClickedCate([high1,high2,high3,high4,high5,high6]);
         }
-        else if (clicked.id === 'second') {
-            setClickedCate([second1, second2, second3, second4, second5]);
-            setTitle('스터디카페');
+        else if (clicked.id === 'low') {
+            setClickedCate([low1,low2,low3,low4,low5]);
         }
-        else if (clicked.id === 'third') {
-            setClickedCate([third1, third2, third3, third4, third5]);
-            setTitle('스터디룸');
+        else if (clicked.id === 'flat') {
+            setClickedCate([flat1,flat2,flat3]);
         }
-        else if (clicked.id === 'fourth') {
-            setClickedCate([fourth1, fourth2, fourth3, fourth4]);
-            setTitle('카페존');
+        else if (clicked.id === 'room') {
+            setClickedCate([room1,room2,room3,room4]);
+        }
+        else if (clicked.id === 'cafe') {
+            setClickedCate([cafe1,cafe2,cafe3,cafe4]);
         }
         else {
-            setClickedCate([fifth1, fifth2, fifth3]);
-            setTitle('기타');
+            setClickedCate([other1,other2,other3,other4,other5]);
         }
+        setTitle(clicked.innerHTML);
     }
     return (
         <>
@@ -200,11 +198,12 @@ function Space() {
             <Wrapper>
             <Category>
                 <ul>
-                    <li className="cate" id="first" onClick={categoryClick}>내부</li>
-                    <li className="cate" id="second" onClick={categoryClick}>스터디카페</li>
-                    <li className="cate" id="third" onClick={categoryClick}>스터디룸</li>
-                    <li className="cate" id="fourth" onClick={categoryClick}>카페존</li>
-                    <li className="cate" id="fifth" onClick={categoryClick}>기타</li>
+                    <li className="cate" id="high" onClick={categoryClick}>하이파티션</li>
+                    <li className="cate" id="low" onClick={categoryClick}>로우파티션</li>
+                    <li className="cate" id="flat" onClick={categoryClick}>평상형</li>
+                    <li className="cate" id="room" onClick={categoryClick}>스터디룸(4인/6인)</li>
+                    <li className="cate" id="cafe" onClick={categoryClick}>카페존</li>
+                    <li className="cate" id="other" onClick={categoryClick}>기타</li>
                 </ul>
             </Category>
             <ImgWrap>
