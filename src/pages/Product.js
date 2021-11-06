@@ -3,17 +3,22 @@ import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
 import styled from 'styled-components';
 import Responsive from '../components/common/Responsive';
+import chargeImg1 from '../imgs/product/charge1.jpeg';
+import chargeImg2 from '../imgs/product/charge2.jpeg';
 
 const Wrapper = styled(Responsive)`
     overflow : auto;
-    padding-top : 5rem;
-    padding-bottom : 6rem;
+    padding-top : 6rem;
+    padding-bottom : 2.5rem;
+    text-align : center;
 `;
 
-const Div = styled.div`
-    text-align : center;
-    font-size : 20px;
-    font-weight : bold;
+
+const Img = styled.img`
+    padding : 40px;
+    margin : 10px;
+    border : 2px solid #0f3e85;
+    border-radius : 7px;
 `;
 
 function Product() {
@@ -21,9 +26,8 @@ function Product() {
         <>
             <Header/>
             <Wrapper>
-            <Div>
-                product
-            </Div>
+                <Img src={chargeImg1}/>
+                <Img src={chargeImg2}/>
             </Wrapper>
             <Footer/>
         </>

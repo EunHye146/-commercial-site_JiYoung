@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
-import mainImg1 from '../../imgs/mainabout1.png';
-import mainImg2 from '../../imgs/mainabout2.png';
+import mainImg1 from '../../imgs/main/mainabout1.png';
+import mainImg2 from '../../imgs/main/mainabout2.png';
 import Slide from 'react-reveal/Slide';
 import Fade from 'react-reveal/Fade';
 
@@ -14,9 +14,15 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled(Responsive)`
-    font-size : 20px;
-    font-weight : bold;
+    text-align : center;
+    font-size : 25px;
+    font-weight : 500;
     padding-top : 60px;
+    #the {
+        font-weight : 900;
+        font-size : 30px;
+        padding-right : 5px;
+    }
 `;
 
 const Block = styled.div`
@@ -61,6 +67,9 @@ const Block = styled.div`
 
 const Text = styled.div`
     padding : 10%;
+    ul {
+        list-style: none;
+    }
 `;
 
 
@@ -70,7 +79,7 @@ function MainAbout() {
     return (
         <>
         <Wrapper>
-            <Title>About</Title>
+            <Title><span id="the">THE</span> 공부하고 싶은 곳</Title>
             <Fade>
             <Block>
                 <div className="left">
@@ -78,10 +87,13 @@ function MainAbout() {
                 </div>
                 <div className="right">
                     <Text>
-                        <h2>쾌적한 환경</h2>
-                        <p>~를 사용하여 ~한 환경에서 공부를 할 수 있도록 어쩌고 저쩌고~
-                            누구나 어쩌고 저쩌고~
-                        </p>
+                        <h2>24시 운영관리 시스템</h2>
+                        <ul>
+                            <li>무인시스템</li>
+                            <li>지문인식 입/퇴실 </li>
+                            <li>CCTV 작동</li>
+                            <li>공기청정기</li>
+                        </ul>
                     </Text>
                 </div>
             </Block>

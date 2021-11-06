@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import studyroomA from '../../imgs/studyroomA.JPG';
-import highpart from '../../imgs/highpart.JPG';
-import cafezone1 from '../../imgs/cafezone1.jpg';
+import studyroomA from '../../imgs/main/studyroomA.JPG';
+import highpart from '../../imgs/main/highpart.jpg';
+import cafezone1 from '../../imgs/main/cafezone1.jpg';
 import './MainSpaces.css';
 
 const Wrapper = styled.div`

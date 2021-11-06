@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import './Header.css';
-import menu_icon from '../../imgs/menu_icon.png';
-import logo2 from '../../imgs/logo2.png';
+import menu_icon from '../../imgs/main/menu_icon.png';
+import logo from '../../imgs/main/logo.png';
 import Slide from 'react-reveal/Slide';
 
 const LinkTo = styled(Link)`
@@ -88,7 +88,7 @@ const NewHeader = () => {
         <>
         <div className="header">
             <div className="navBar_toggleBtn"><img className="menu_icon_img" src={menu_icon} onClick={CkMenuToggle}/></div>
-            <div><Link to="/"><LogoImg src={logo2}/></Link></div>
+            <div><Link to="/"><LogoImg src={logo}/></Link></div>
             <ul className="navBar_menus">
                 <li className="navBar_menus_menu">
                     <LinkTo to="/space">공간</LinkTo>
