@@ -5,7 +5,7 @@ const ResponsiveBlock = styled.div`
     width: 1150px;
     margin: 0 auto; /* 중앙 정렬 */
     @media (max-width: 768px) {
-      width: 100%;
+      width: 95%;
     }
 `;
 

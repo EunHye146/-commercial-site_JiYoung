@@ -8,18 +8,17 @@ import './MainSpaces.css';
 
 const Wrapper = styled.div`
     margin-top : 20px;
-    padding-bottom : 2rem;
+    padding-bottom : 40px;
 `;
 
 const Title = styled.div`
     font-size : 20px;
-    font-weight : bold;
     margin : 1rem;
     text-decoration : underline;
 `;
 const MoreWrapper = styled.div`
     text-align : center;
-    padding-top : 10px;
+    padding-top : 35px;
 `;
 
 const More = styled(Link)`
@@ -71,7 +70,7 @@ function MainSpaces() {
         {imgList}
         </ImgListWrapper>
         <MoreWrapper>
-        <More to="/space">+ More</More>
+        <More to="/space">+ MORE</More>
         </MoreWrapper>
         </Wrapper>
         </>

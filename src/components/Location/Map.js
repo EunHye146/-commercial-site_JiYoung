@@ -18,6 +18,7 @@ const Title = styled.div`
   font-size : 25px;
   font-weight : bold;
   margin-top : 45px;
+  margin-bottom : 45px;
   text-align : center;
 `;
 
@@ -30,6 +31,10 @@ const TextWrapper = styled.div`
   background : #fffefa;
   border-radius : 10px;
   box-shadow : 3px 3px 3px 3px #d9d7cc;
+  @media screen and (max-width: 768px) {
+    width : 100%;
+    margin-left : 0;
+  }
 `;
 
 const Text = styled.div`
@@ -47,6 +52,9 @@ const Div = styled.div`
   width : 500px;
   height : 400px;
   display : inline-block;
+  @media screen and (max-width: 768px) {
+    width : 100%;
+  }
 `;
 
 const Map = () => {

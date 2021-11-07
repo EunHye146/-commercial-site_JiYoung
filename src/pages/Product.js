@@ -19,6 +19,11 @@ const Img = styled.img`
     margin : 10px;
     border : 2px solid #0f3e85;
     border-radius : 7px;
+    @media screen and (max-width: 768px) {
+        width : 95%;
+        padding : 0;
+        margin : 0;
+    }
 `;
 
 function Product() {

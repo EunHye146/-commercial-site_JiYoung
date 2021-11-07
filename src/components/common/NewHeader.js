@@ -100,7 +100,7 @@ const NewHeader = () => {
                     <LinkTo to="/product">이용요금</LinkTo>
                 </li>
                 <li className="navBar_menus_menu">
-                    <LinkTo to="/notice">공지사항</LinkTo>
+                    <LinkTo to="/event">EVENT</LinkTo>
                 </li>
                 <li className="navBar_menus_menu">
                     <LinkTo to="/join">가맹문의</LinkTo>
@@ -111,19 +111,19 @@ const NewHeader = () => {
          <Slide top when={menuToggle}>
             <ul id="toggleMenus">
                 <li className="toggleMenus_menu">
-                    <LinkTo to="/services">서비스</LinkTo>
+                    <LinkTo to="/space">공간</LinkTo>
                 </li>
                 <li className="toggleMenus_menu">
                     <LinkTo to="/location">위치</LinkTo>
                 </li>
                 <li className="toggleMenus_menu">
-                    <LinkTo to="/space">공간</LinkTo>
-                </li>
-                <li className="toggleMenus_menu">
                     <LinkTo to="/product">이용요금</LinkTo>
                 </li>
                 <li className="toggleMenus_menu">
-                    <LinkTo to="/notice">NOTICE</LinkTo>
+                    <LinkTo to="/event">EVENT</LinkTo>
+                </li>
+                <li className="toggleMenus_menu">
+                    <LinkTo to="/join">가맹문의</LinkTo>
                 </li>
             </ul>
         </Slide>

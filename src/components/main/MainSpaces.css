@@ -9,7 +9,7 @@
 .text { 
     display: none;
     text-align: center;
-    width : 200px;
+    width : 220px;
 }
 .image:hover > .text { 
     display: block;

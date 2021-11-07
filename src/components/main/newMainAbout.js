@@ -16,12 +16,11 @@ const Wrapper = styled.div`
 
 const Title = styled(Responsive)`
     font-size : 25px;
-    font-weight : 500;
     padding-bottom : 60px;
     #the {
-        font-weight : 900;
         font-size : 30px;
         padding-right : 5px;
+        font-weight : bold;
     }
 `;
 
@@ -47,16 +46,17 @@ const Div = styled.div`
     #title-top {
         padding-top : 60px;
         font-size : 15px;
+        font-family : 'GmarketSansTTFLight';
         padding-bottom : 10px;
         letter-spacing : 1px;
     }
     #title-bottom {
         color : black;
-        font-size : 30px;
+        font-size : 35px;
         font-weight : bold;
         padding-bottom : 50px;
-        -webkit-text-stroke-width: 0.5px;
-	    -webkit-text-stroke-color: white
+        -webkit-text-stroke-width: 1px;
+	    -webkit-text-stroke-color: white;
     }
     #content {
         width : 100vh;

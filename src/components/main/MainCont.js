@@ -6,9 +6,7 @@ import logoImg from '../../imgs/main/BannerLogo.png';
 const Wrapper = styled.div`
     position : relative;
     text-align : center;
-    font-family : 'Gmarket Sans';
     color : black;
-    font-weight : bold;
     @keyframes fadein {
         0%   { opacity: 0; }
         100% { opacity: 1; }

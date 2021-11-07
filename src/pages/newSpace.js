@@ -125,7 +125,11 @@ const Img = styled.img`
     border : 3px solid white;
 `;
 
-
+const H2 = styled.h2`
+    @media screen and (max-width: 768px) {
+        padding-top : 25px;
+    }
+`;
 
 function Space() {
     const [mainSlick, setMainSlick] = useState(null);
@@ -207,7 +211,7 @@ function Space() {
                 </ul>
             </Category>
             <ImgWrap>
-            <h2>{title}</h2>
+            <H2>{title}</H2>
             <div id="main-slide-wrapper">
                 <div id="main-slide">
                     <Slick ref={mainSlickRef} asNavFor={pagingSlick} {...mainSettings}>

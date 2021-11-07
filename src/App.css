@@ -39,19 +39,16 @@
 
 @font-face {
   font-family: "NanumBarunGothic";
-  font-weight: 50;
   src: url("./fonts/NanumBarunGothic.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "NanumBarunGothic";
-  font-weight: 100;
+  font-family: "NanumBarunGothicBold";
   src: url("./fonts/NanumBarunGothicBold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Gmarket Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: url('./fonts/GmarketSansTTFBold.ttf') format(woff2);
+  font-family: "GmarketSansTTFMedium";
+  src: url("./fonts/GmarketSansTTFMedium.ttf") format("truetype");
 }
+
