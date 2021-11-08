@@ -34,6 +34,10 @@ const SubText = styled.div`
 const TitleText = styled.span`
     font-size : 37px;
     letter-spacing: 3px;
+    #zoah {
+        font-size : 48px;
+        padding : 5px;
+    }
 `;
 /*
 const BannerLogo = styled.img`
@@ -47,7 +51,7 @@ function MainCont() {
         <>
         <Wrapper>
             <PhotoSlide/>
-            <TextBlock><TitleText>ZOAH STUDYCAFE</TitleText>
+            <TextBlock><TitleText><span id="zoah">ZOAH</span>STUDYCAFE</TitleText>
                 <SubText>
                 럭셔리한 호텔식 스터디카페
                 </SubText>
