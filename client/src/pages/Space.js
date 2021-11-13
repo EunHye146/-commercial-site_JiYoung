@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
+import ClickedImg from '../components/Space/ClickedImg';
 import styled from 'styled-components';
 import Responsive from '../components/common/Responsive';
 import high1 from '../imgs/space/high/01.jpg';
@@ -66,6 +67,10 @@ const ImgWrap = styled.div`
 const Img = styled.img`
     width : 98.5%;
     border-radius : 5px;
+    cursor : pointer;
+    @media screen and (max-width: 768px) {
+        cursor : default;
+    }
 `;
 
 const Hr = styled.hr`
@@ -73,6 +78,12 @@ const Hr = styled.hr`
     height: 1px;
     background: gray;
     margin-top : 45px;
+`;
+
+const Wrap = styled.div`
+    @media screen and (max-width: 768px) {
+        display : none;
+    }
 `;
 
 function Space() {
@@ -102,7 +113,21 @@ function Space() {
         cate : "기타",
         imgs : [other1,other2,other3,other4,other5]
     }
-    const spaceList = spaces.map(space => <><Cate>{space.cate}</Cate>{space.imgs.map((img) => <ImgWrap><Img src={img}/></ImgWrap>)}<Hr/></>)
+
+    let [clickedImg, setClickedImg] = useState(null);
+
+    const showImg = (e) => {
+        if (window.innerWidth > 768) {
+            setClickedImg(e.target.src);
+        }
+    }
+
+    let closeImg = () => {
+        setClickedImg(null);
+    }
+    
+    const spaceList = spaces.map(space => <><Cate>{space.cate}</Cate>{space.imgs.map((img) => <ImgWrap><Img src={img} onClick={showImg}/></ImgWrap>)}<Hr/></>)
+
     return (
         <>
             <Header/>
@@ -110,7 +135,8 @@ function Space() {
             <Title>공간</Title>
             <Wrapper>
                 {spaceList}
-                <Cate>{lastspace.cate}</Cate>{lastspace.imgs.map((img) => <ImgWrap><Img src={img}/></ImgWrap>)}
+                <Cate>{lastspace.cate}</Cate>{lastspace.imgs.map((img) => <ImgWrap><Img src={img} onClick={showImg}/></ImgWrap>)}
+            {clickedImg && <Wrap><ClickedImg clickedImg={clickedImg} closeImg={closeImg}/></Wrap>}
             </Wrapper>
             <Footer/>
         </>

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import './Header.css';
 import menu_icon from '../../imgs/main/menu_icon.png';
 import logo from '../../imgs/main/logo.png';
+import naver_icon from '../../imgs/main/naver_icon.png';
 import Slide from 'react-reveal/Slide';
 
 const LinkTo = styled(Link)`
@@ -33,15 +34,9 @@ const User = styled.div`
   font-size : 12px;
 `;
 
-const Blog = styled.div`
-  color : black;
+const NaverImg = styled.img`
+  width : 40px;
   cursor : pointer;
-  font-weight : 200;
-  letter-spacing : 0.1rem;
-  &:hover {
-      color : #099e18;
-      font-weight : 500;
-  }
 `;
 
 const NewHeader = () => {
@@ -81,7 +76,7 @@ const NewHeader = () => {
     const user = window.sessionStorage.getItem('id');
 
     const openBlog = () => {
-        window.open('https://section.blog.naver.com/', '_blank')
+        window.open('https://map.naver.com/v5/search/%EC%A1%B0%EC%95%84%EC%8A%A4%ED%84%B0%EB%94%94/place/1336064146?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=14109386.6864605,4541731.1410773,15,0,0,0,dh', '_blank')
     }
 
     return(
@@ -106,7 +101,7 @@ const NewHeader = () => {
                     <LinkTo to="/join">가맹문의</LinkTo>
                 </li>
             </ul>
-            <Blog onClick={openBlog}>blog</Blog>
+            <NaverImg src={naver_icon} onClick={openBlog}/>
         </div>
          <Slide top when={menuToggle}>
             <ul id="toggleMenus">

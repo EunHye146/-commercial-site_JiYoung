@@ -2,16 +2,15 @@ import React from 'react';
 import Header from '../components/common/NewHeader';
 import MainCont from '../components/main/MainCont';
 import MainAbout from '../components/main/MainAbout';
-import NewMainAbout from '../components/main/newMainAbout';
+import NewMainAbout from '../components/main/NewMainAbout';
 import MainSpaces from '../components/main/MainSpaces';
 import Footer from '../components/common/Footer';
 import styled from 'styled-components';
 import Responsive from '../components/common/Responsive';
-import Slide from 'react-reveal/Slide';
 import JoinBanner from '../components/main/JoinBanner';
 
-const Wrapper = styled(Responsive)`
-    padding-top : 3rem;
+const Spacer  = styled.div`
+    height : 100px;
 `;
 
 function Main() {
@@ -19,12 +18,10 @@ function Main() {
         <>
             <Header/>
             <MainCont/>
-            <Slide bottom><NewMainAbout/></Slide>
-            <Wrapper>
-            <Slide bottom>
+            <Spacer/>
+            <NewMainAbout/>
+            <Spacer/>
             <MainSpaces/>
-            </Slide>
-            </Wrapper>
             <JoinBanner/>
             <Footer/>
         </>

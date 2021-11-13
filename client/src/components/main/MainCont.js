@@ -12,7 +12,6 @@ const Wrapper = styled.div`
         100% { opacity: 1; }
     }
     animation: fadein 2s;
-    height : 100vh;
 `;
 
 const TextBlock = styled.div`

@@ -11,17 +11,14 @@ import mainImg3 from '../../imgs/main/mainImg3.jpeg';
 const Wrapper = styled.div`
     margin: 0 auto; /* 중앙 정렬 */
     object-fit: cover;
-    overflow:hidden;
-    margin-bottom : 200px;
-    @media screen and (max-width: 768px) {
-        margin:0 auto;
-    }
+    opacity : 0.8;
 `;
 
 const Img = styled.img`
+    height : 95vh;
+    object-fit:cover;
     @media screen and (max-width: 768px) {
-        height : 90vh;
-        object-fit:cover;
+        height : 100vh;
     }
 `;
 
@@ -29,8 +26,8 @@ const Img = styled.img`
 class PhotoSlide extends React.Component {
     render() {
         const settings = {
-            dots: true,
-            arrows:true,
+            dots: false,
+            arrows: false,
             infinite: true,
             speed: 500,
             //얘 없으면 옆으로 슬라이드 형식

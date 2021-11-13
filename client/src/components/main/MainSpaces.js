@@ -5,6 +5,8 @@ import studyroomA from '../../imgs/main/studyroomA.JPG';
 import highpart from '../../imgs/main/highpart.jpg';
 import cafezone1 from '../../imgs/main/cafezone1.jpg';
 import './MainSpaces.css';
+import Fade from 'react-reveal/Fade';
+import Slide from 'react-reveal/Slide';
 
 const Wrapper = styled.div`
     margin-top : 20px;
@@ -12,10 +14,27 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-    font-size : 20px;
-    margin : 1rem;
-    text-decoration : underline;
+    text-align : center;
+    margin-bottom : 50px;
 `;
+
+const LeftHr = styled.hr`
+    display : inline-block;
+    width : 40%;
+`;
+
+const RightHr = styled.hr`
+    display : inline-block;
+    width : 40%;
+`;
+
+const Text = styled.div`
+    display : inline-block;
+    font-size : 25px;
+    margin : 10px;
+    letter-spacing : 5px;
+`;
+
 const MoreWrapper = styled.div`
     text-align : center;
     padding-top : 35px;
@@ -31,12 +50,7 @@ const More = styled(Link)`
     }
 `;
 const ImgListWrapper = styled.div`
-    display : flex;
-    justify-content: space-between;
-    @media screen and (max-width: 768px) {
-        display : block;
-        text-align : center;
-    }
+    text-align : center;
 `;
 
 
@@ -64,14 +78,18 @@ function MainSpaces() {
         <>
         <Wrapper>
         <Title>
-        공간
+        <Fade left delay={500}><LeftHr/></Fade>
+        <Fade><Text>공간</Text></Fade>
+        <Fade right delay={500}><RightHr/></Fade>
         </Title>
+        <Slide bottom>
         <ImgListWrapper>
-        {imgList}
+            {imgList}
         </ImgListWrapper>
         <MoreWrapper>
         <More to="/space">+ MORE</More>
         </MoreWrapper>
+        </Slide>
         </Wrapper>
         </>
     );

@@ -1,9 +1,10 @@
 .image {
     position:relative;
     display: inline-block;
+    margin : 10px;
   }
 .image > img {
-    width : 370px;
+    width : 380px;
     
 }
 .text { 
