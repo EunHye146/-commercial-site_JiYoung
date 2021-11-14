@@ -215,7 +215,7 @@ function Space() {
             <div id="main-slide-wrapper">
                 <div id="main-slide">
                     <Slick ref={mainSlickRef} asNavFor={pagingSlick} {...mainSettings}>
-                        {clickedCate.map((first) => <Img src={first}/>)}
+                        {clickedCate.map((first, index) => <Img src={first} key={index}/>)}
                     </Slick>
                 </div>
                 <PrevButton src={leftarrow} onClick={onClickPrev(mainSlickRef)}/>
@@ -223,7 +223,7 @@ function Space() {
             </div>
             <div id="subslide">
                 <Slick ref={pagingSlickRef} asNavFor={mainSlick} {...pagingSettings}>
-                    {clickedCate.map((first) => <Img src={first}/>)}
+                    {clickedCate.map((first, index) => <Img src={first} key={index}/>)}
                 </Slick>
             </div>
             </ImgWrap>

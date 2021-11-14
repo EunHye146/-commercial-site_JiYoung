@@ -43,7 +43,7 @@ function JoinBanner() {
     return (
         <>
             <Div onClick={openModal}>가맹문의</Div>
-            { showModal && <Join showModal={showModal} closeModal={closeModal}/>}
+            { showModal && <Join closeModal={closeModal}/>}
         </>
     );
 }

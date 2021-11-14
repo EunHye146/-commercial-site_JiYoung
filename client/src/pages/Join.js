@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from 'react';
+import { withRouter } from 'react-router-dom';
 import emailjs from 'emailjs-com';
-import Header from '../components/common/NewHeader';
-import Footer from '../components/common/Footer';
-import Responsive from '../components/common/Responsive';
 import styled from 'styled-components';
+
+require('dotenv').config();
+
+
+let service_id = process.env.REACT_APP_SERVICE_ID;
+let template_id = process.env.REACT_APP_TEMPLATE_ID;
+let user_id = process.env.REACT_APP_USER_ID;
 
 const Background = styled.div`
     position : absolute;
@@ -25,7 +30,6 @@ const Modal = styled.div`
     background : #fafafa;        
     border : 2px solid gray;
     box-shadow : 5px 5px 5px #7d7d7d;
-    text-align : center;
     @media screen and (max-width: 768px) {
         width : 100%;
         height : 100%;
@@ -37,6 +41,7 @@ const Title = styled.div`
     font-size : 30px;
     font-weight : bold;
     padding-top : 3rem;
+    text-align : center;
 `;
 
 const Close = styled.div`
@@ -52,35 +57,42 @@ const Close = styled.div`
     }
 `;
 
-const ContentWrapper = styled.div`
-    width : 330px;
-    margin : 0 auto;
+const Form = styled.form`
+    text-align : center;
+    padding : 50px;
+`;
+
+const Table = styled.table`
+    display : inline-block;
     text-align : left;
-    padding-top : 30px;
     input {
-        margin : 8px;
-        width : 330px;
+        width : 200px;
     }
-    textarea {
-        margin : 8px;
+    td {
+        padding : 5px;
     }
 `;
 
-const Button = styled.button`
-    background : lightgray;
-    border : none;
-    width : 200px;
+const Button = styled.input`
+    width : 120px;
     height : 40px;
-    font-size : 15px;
-    margin-top : 10px;
-    margin-bottom : 30px;
+    background : black;
+    border : none;
+    border-radius : 5px;
+    color : white;
+    margin-top : 20px;
     cursor : pointer;
     &:hover {
-        opacity : 0.5;
+        background : gray;
     }
 `;
 
-function Join( {showModal, closeModal}) {
+const ByteInfo = styled.span`
+    font-size : 12px;
+    margin-left : 5px;
+`;
+
+function Join( {closeModal, history}) {
     useEffect(() => {
         document.body.style.cssText = `
           position: fixed; 
@@ -97,20 +109,21 @@ function Join( {showModal, closeModal}) {
 
       const sendEmail = (e) => {
         e.preventDefault();
-    
-        emailjs.sendForm('', '', form.current, '')
+        //console.log(form.current.name.value=="");
+        emailjs.sendForm(service_id, template_id, form.current, user_id)
           .then((result) => {
-              console.log(result.text);
+              alert('문의하신 내용이 접수되었습니다.');
+              closeModal();
           }, (error) => {
-              console.log(error.text);
+              alert('오류가 발생하였습니다. 전화로 문의바랍니다.');
           });
+          
       };
       // Byte 수 체크 제한
     
     const checkByte = (e) => {
-        var str = e.value;
-        var str_len = e.length;
-
+        var str = e.target.value;
+        var str_len = e.target.value.length;
 
         var rbyte = 0;
         var rlen = 0;
@@ -125,16 +138,15 @@ function Join( {showModal, closeModal}) {
             }else{
                 rbyte++;                                            //영문 등 나머지 1Byte
             }
-            if(rbyte <= 80) {
+            if(rbyte <= 100) {
                 rlen = i+1;                                          //return할 문자열 갯수
             }
         }
-        if (rbyte > 80) {
+        if (rbyte > 100) {
             // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
-            alert("메세지는 최대 " + 80 + "byte를 초과할 수 없습니다.")
+            alert("메세지는 최대 " + 100 + "byte를 초과할 수 없습니다.")
             str2 = str.substr(0,rlen);                                  //문자열 자르기
-            e.value = str2;
-            checkByte();
+            e.target.value = str2;
         }
         else {
             document.getElementById('byteInfo').innerText = rbyte;
@@ -145,22 +157,32 @@ function Join( {showModal, closeModal}) {
             <Background>
                 <Modal>
                 <Title>가맹문의</Title><Close onClick={closeModal}>+</Close>
-                <form ref={form} onSubmit={sendEmail}>
-                    <label>이름</label>
-                    <input type="text" name="name" />
-                    <label>연락처</label>
-                    <input type="tel" name="tel" placeholder="010-"/>
-                    <label>창업지역</label>
-                    <input type="text" name="area" placeholder="창업 희망 지역"/>
-                    <label>문의내용</label>
-                    <textarea name="message" /><span id="byteInfo">0</span> /80bytes
-                    <input type="submit" value="Send" />
-                </form>
+                <Form ref={form} onSubmit={sendEmail}>
+                    <Table>
+                        <tr>
+                            <td><label>이름</label></td>
+                            <td><input type="text" name="name" required/></td>
+                        </tr>
+                        <tr>
+                            <td><label>연락처</label></td>
+                            <td><input type="tel" name="tel" placeholder="010-" required/></td>
+                        </tr>
+                        <tr>
+                            <td><label>창업지역</label></td>
+                            <td><input type="text" name="area" placeholder="창업 희망 지역"/></td>
+                        </tr>
+                        <tr>
+                            <td><label>문의내용</label></td>
+                            <td><textarea name="message" cols="30" rows="5" onKeyUp={checkByte}/><ByteInfo><span id="byteInfo">0</span>/100bytes</ByteInfo></td>
+                        </tr>
+                    </Table><br/>
+                    <Button type="submit" value="문의하기" />
+                </Form>
                 </Modal>
             </Background>
         </>
     );
 }
 
-export default Join;
+export default withRouter(Join);
 
