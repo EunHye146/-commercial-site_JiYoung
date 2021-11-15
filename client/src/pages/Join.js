@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
 import styled from 'styled-components';
-import Responsive from '../components/common/Responsive';
 import emailjs from 'emailjs-com';
+import Fade from 'react-reveal/Fade';
 
 require('dotenv').config();
 
@@ -33,6 +33,9 @@ const Wrapper = styled.div`
 const Form = styled.form`
     display : inline-block;
     width : 50%;
+    @media screen and (max-width: 768px) {
+        width : 90%;
+    }
 `;
 
 const Table = styled.table`
@@ -73,59 +76,66 @@ const ByteInfo = styled.div`
     text-align : right;
 `;
 
+const Hr = styled.hr`
+  width : 250px;
+  display : block;
+`;
+
 function Join() {
     const form = useRef();
 
     const sendEmail = (e) => {
       e.preventDefault();
-      //console.log(form.current.name.value=="");
+      form.current.button.disabled = true;
       emailjs.sendForm(service_id, template_id, form.current, user_id)
         .then((result) => {
             alert('문의하신 내용이 접수되었습니다.');
             form.current.reset();
+            form.current.button.disabled = false;
         }, (error) => {
             alert('오류가 발생하였습니다. 전화로 문의바랍니다.');
         });
         
     };
+    
     // Byte 수 체크 제한
-  
-  const checkByte = (e) => {
-      var str = e.target.value;
-      var str_len = e.target.value.length;
+    const checkByte = (e) => {
+        var str = e.target.value;
+        var str_len = e.target.value.length;
 
-      var rbyte = 0;
-      var rlen = 0;
-      var one_char = "";
-      var str2 = "";
+        var rbyte = 0;
+        var rlen = 0;
+        var one_char = "";
+        var str2 = "";
 
 
-      for (var i=0; i<str_len; i++) {
-          one_char = str.charAt(i);
-          if(escape(one_char).length > 4) {
-              rbyte += 2;                                         //한글2Byte
-          }else{
-              rbyte++;                                            //영문 등 나머지 1Byte
-          }
-          if(rbyte <= 100) {
-              rlen = i+1;                                          //return할 문자열 갯수
-          }
-      }
-      if (rbyte > 100) {
-          // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
-          alert("메세지는 최대 " + 100 + "byte를 초과할 수 없습니다.")
-          str2 = str.substr(0,rlen);                                  //문자열 자르기
-          e.target.value = str2;
-      }
-      else {
-          document.getElementById('byteInfo').innerText = rbyte;
-      }
-  }
+        for (var i=0; i<str_len; i++) {
+            one_char = str.charAt(i);
+            if(escape(one_char).length > 4) {
+                rbyte += 2;                                         //한글2Byte
+            }else{
+                rbyte++;                                            //영문 등 나머지 1Byte
+            }
+            if(rbyte <= 1000) {
+                rlen = i+1;                                          //return할 문자열 갯수
+            }
+        }
+        if (rbyte > 1000) {
+            // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
+            alert("문의내용은 최대 " + 1000 + "byte를 초과할 수 없습니다.")
+            str2 = str.substr(0,rlen);                                  //문자열 자르기
+            e.target.value = str2;
+        }
+        else {
+            document.getElementById('byteInfo').innerText = rbyte;
+        }
+    }
     return (
         <>
             <Header/>
             <Spacer/>
-            <Title>가맹문의</Title>
+            <Title><Fade left><Hr/></Fade><Fade delay={400}>가맹문의</Fade><Fade right><Hr/></Fade></Title>
+            <Fade delay={500}>
             <Wrapper>
             <Form ref={form} onSubmit={sendEmail}>
                     <Table>
@@ -143,12 +153,13 @@ function Join() {
                         </tr>
                         <tr>
                             <td><label>문의내용</label></td>
-                            <td><textarea name="message" onKeyUp={checkByte}/><ByteInfo><span id="byteInfo">0</span>/100bytes</ByteInfo></td>
+                            <td><textarea name="message" onKeyUp={checkByte}/><ByteInfo><span id="byteInfo">0</span>/1000bytes</ByteInfo></td>
                         </tr>
                     </Table>
-                    <Button type="submit" value="문의하기" />
+                    <Button type="submit" name="button" value="문의하기" />
                 </Form>
             </Wrapper>
+            </Fade>
             <Footer/>
         </>
     );

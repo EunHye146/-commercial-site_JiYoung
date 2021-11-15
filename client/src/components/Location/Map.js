@@ -2,13 +2,13 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import './Map.css';
-import Responsive from '../common/Responsive';
+import Fade from 'react-reveal/Fade';
 
 const Spacer = styled.div`
   height : 3.5rem;
 `;
 
-const Wrapper = styled(Responsive)`
+const Wrapper = styled.div`
   text-align : center;
   margin-top : 45px;
   margin-bottom : 115px;
@@ -32,7 +32,7 @@ const TextWrapper = styled.div`
   border-radius : 10px;
   box-shadow : 3px 3px 3px 3px #d9d7cc;
   @media screen and (max-width: 768px) {
-    width : 100%;
+    width : 90%;
     margin-left : 0;
   }
 `;
@@ -53,8 +53,13 @@ const Div = styled.div`
   height : 400px;
   display : inline-block;
   @media screen and (max-width: 768px) {
-    width : 100%;
+    width : 90%;
   }
+`;
+
+const Hr = styled.hr`
+  width : 250px;
+  display : block;
 `;
 
 const Map = () => {
@@ -91,7 +96,8 @@ const Map = () => {
     return (
       <>
         <Spacer/>
-        <Title>위치</Title>
+        <Title><Fade left><Hr/></Fade><Fade delay={400}>위치</Fade><Fade right><Hr/></Fade></Title>
+        <Fade delay={500}>
         <Wrapper>
         <Div id="map"></Div>
         <TextWrapper>
@@ -103,6 +109,7 @@ const Map = () => {
           </Text>
         </TextWrapper>
         </Wrapper>
+        </Fade>
       </>
     )
 }

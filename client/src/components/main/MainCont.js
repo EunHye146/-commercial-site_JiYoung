@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PhotoSlide from './PhotoSlide';
-import logoImg from '../../imgs/main/BannerLogo.png';
 
 const Wrapper = styled.div`
     position : relative;

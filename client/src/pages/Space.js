@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
 import ClickedImg from '../components/Space/ClickedImg';
 import styled from 'styled-components';
-import Responsive from '../components/common/Responsive';
+import Fade from 'react-reveal/Fade';
 import high1 from '../imgs/space/high/01.jpg';
 import high2 from '../imgs/space/high/02.jpg';
 import high3 from '../imgs/space/high/03.jpg';
@@ -43,8 +43,18 @@ const Title = styled.div`
     text-align : center;
 `;
 
-const Wrapper = styled(Responsive)`
-    margin-bottom : 115px;
+const Wrapper = styled.div`
+    margin-bottom : 45px;
+    text-align : center;
+`;
+
+const Div = styled.div`
+    display : inline-block;
+    width : 80%;
+    text-align : left;
+    @media screen and (max-width: 768px) {
+        width : 95%;
+    }
 `;
 
 const Cate = styled.div`
@@ -68,12 +78,20 @@ const Img = styled.img`
     width : 98.5%;
     border-radius : 5px;
     cursor : pointer;
+    &:hover {
+        opacity : 0.8;
+    }
     @media screen and (max-width: 768px) {
         cursor : default;
     }
 `;
 
-const Hr = styled.hr`
+const Hr1 = styled.hr`
+  width : 250px;
+  display : block;
+`;
+
+const Hr2 = styled.hr`
     border: 0;
     height: 1px;
     background: gray;
@@ -126,18 +144,22 @@ function Space() {
         setClickedImg(null);
     }
     
-    const spaceList = spaces.map(space => <><Cate>{space.cate}</Cate>{space.imgs.map((img) => <ImgWrap><Img src={img} onClick={showImg}/></ImgWrap>)}<Hr/></>)
+    const spaceList = spaces.map(space => <><Cate>{space.cate}</Cate>{space.imgs.map((img) => <ImgWrap><Img src={img} onClick={showImg}/></ImgWrap>)}<Hr2/></>)
 
     return (
         <>
             <Header/>
             <Spacer/>
-            <Title>공간</Title>
+            <Title><Fade left><Hr1/></Fade><Fade delay={400}>공간</Fade><Fade right><Hr1/></Fade></Title>
+            <Fade delay={700}>
             <Wrapper>
-                {spaceList}
-                <Cate>{lastspace.cate}</Cate>{lastspace.imgs.map((img) => <ImgWrap><Img src={img} onClick={showImg}/></ImgWrap>)}
-            {clickedImg && <Wrap><ClickedImg clickedImg={clickedImg} closeImg={closeImg}/></Wrap>}
+                <Div>
+                    {spaceList}
+                    <Cate>{lastspace.cate}</Cate>{lastspace.imgs.map((img) => <ImgWrap><Img src={img} onClick={showImg}/></ImgWrap>)}
+                    {clickedImg && <Wrap><ClickedImg clickedImg={clickedImg} closeImg={closeImg}/></Wrap>}
+                </Div>
             </Wrapper>
+            </Fade>
             <Footer/>
         </>
     );

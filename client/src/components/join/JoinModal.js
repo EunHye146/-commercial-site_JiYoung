@@ -109,7 +109,7 @@ function JoinModal( {closeModal, history}) {
 
       const sendEmail = (e) => {
         e.preventDefault();
-        //console.log(form.current.name.value=="");
+        form.current.button.disabled = true;
         emailjs.sendForm(service_id, template_id, form.current, user_id)
           .then((result) => {
               alert('문의하신 내용이 접수되었습니다.');
@@ -138,13 +138,13 @@ function JoinModal( {closeModal, history}) {
             }else{
                 rbyte++;                                            //영문 등 나머지 1Byte
             }
-            if(rbyte <= 100) {
+            if(rbyte <= 1000) {
                 rlen = i+1;                                          //return할 문자열 갯수
             }
         }
-        if (rbyte > 100) {
+        if (rbyte > 1000) {
             // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
-            alert("메세지는 최대 " + 100 + "byte를 초과할 수 없습니다.")
+            alert("문의내용은 최대 " + 1000 + "byte를 초과할 수 없습니다.")
             str2 = str.substr(0,rlen);                                  //문자열 자르기
             e.target.value = str2;
         }
@@ -173,10 +173,10 @@ function JoinModal( {closeModal, history}) {
                         </tr>
                         <tr>
                             <td><label>문의내용</label></td>
-                            <td><textarea name="message" cols="30" rows="5" onKeyUp={checkByte}/><ByteInfo><span id="byteInfo">0</span>/100bytes</ByteInfo></td>
+                            <td><textarea name="message" cols="30" rows="5" onKeyUp={checkByte}/><ByteInfo><span id="byteInfo">0</span>/1000bytes</ByteInfo></td>
                         </tr>
                     </Table><br/>
-                    <Button type="submit" value="문의하기" />
+                    <Button type="submit" name="button" value="문의하기" />
                 </Form>
                 </Modal>
             </Background>

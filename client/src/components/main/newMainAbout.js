@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Responsive from '../common/Responsive';
-import mainImg1 from '../../imgs/main/mainabout1.png';
-import mainImg2 from '../../imgs/main/mainabout2.png';
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
 

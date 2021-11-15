@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import './Header.css';
@@ -20,19 +20,9 @@ const LogoImg = styled.img`
   height : 3rem;
 `;
 
-const Img = styled.img`
-  width : 1.5rem;
-  height : 1.5rem;
-  @media screen and (max-width: 768px) {
-    width : 3rem;
-    height : 3rem;
-    padding : 1rem;
-  }
-`;
-
-const User = styled.div`
+/*const User = styled.div`
   font-size : 12px;
-`;
+`;*/
 
 const NaverImg = styled.img`
   width : 40px;
@@ -41,11 +31,9 @@ const NaverImg = styled.img`
 
 const NewHeader = () => {
     const [menuToggle, setMenuToggle] = useState(false);
-    const [snsToggle, setSnsToggle] = useState(false);
 
     const CkMenuToggle = () => {
         //document.getElementById('toggleSns').style.display = 'none';
-        setSnsToggle(false);
         if (menuToggle) {
             setMenuToggle(!menuToggle);
             setTimeout(() => {
@@ -58,22 +46,7 @@ const NewHeader = () => {
         }
     }
 
-    const CkSnsToggle = () => {
-        document.getElementById('toggleMenus').style.display = 'none';
-        setMenuToggle(false);
-        if (snsToggle) {
-            setSnsToggle(!snsToggle);
-            setTimeout(() => {
-                document.getElementById('toggleSns').style.display = 'none';
-              }, 720);
-        } 
-        else {
-            document.getElementById('toggleSns').style.display = 'block';
-            setSnsToggle(!snsToggle);
-        }
-    }
-
-    const user = window.sessionStorage.getItem('id');
+    //const user = window.sessionStorage.getItem('id');
 
     const openBlog = () => {
         window.open('https://map.naver.com/v5/search/%EC%A1%B0%EC%95%84%EC%8A%A4%ED%84%B0%EB%94%94/place/1336064146?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=14109386.6864605,4541731.1410773,15,0,0,0,dh', '_blank')
@@ -82,7 +55,7 @@ const NewHeader = () => {
     return(
         <>
         <div className="header">
-            <div className="navBar_toggleBtn"><img className="menu_icon_img" src={menu_icon} onClick={CkMenuToggle}/></div>
+            <div className="navBar_toggleBtn"><img className="menu_icon_img" src={menu_icon} alt="메뉴 드롭 아이콘" onClick={CkMenuToggle}/></div>
             <div><Link to="/"><LogoImg src={logo}/></Link></div>
             <ul className="navBar_menus">
                 <li className="navBar_menus_menu">

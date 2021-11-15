@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
 import styled from 'styled-components';
-import Responsive from '../components/common/Responsive';
 import Slick from 'react-slick';
+import Fade from 'react-reveal/Fade';
 import leftarrow from '../imgs/space/leftarrow.png';
 import rightarrow from '../imgs/space/rightarrow.png';
 import high1 from '../imgs/space/high/01.jpg';
@@ -34,28 +34,48 @@ import other3 from '../imgs/space/other/03.jpg';
 import other4 from '../imgs/space/other/04.jpg';
 import other5 from '../imgs/space/other/05.jpg';
 
+const Wrapper = styled.div`
+    margin-top : 45px;
+    margin-bottom : 45px;
+    text-align : center;
+`;
 
+const Spacer = styled.div`
+  height : 3.5rem;
+`;
 
-const Wrapper = styled(Responsive)`
-    position : relative;
-    padding-top : 7rem;
-    height : 700px;
+const Title = styled.div`
+    font-size : 25px;
+    font-weight : bold;
+    margin-top : 45px;
+    text-align : center;
+`;
+
+const Div = styled.div`
+    display : inline-block;
+    width : 80%;
+    text-align : right;
+    @media screen and (max-width: 768px) {
+        width : 100%;
+        text-align : center;
+    }
 `;
 
 const Category = styled.div`
     position : absolute;
-    border : 1px solid;
+    width : 17%;
+    border : 1px solid black;
     border-radius : 5px;
-    width : 20%;
     font-size : 15px;
     color : gray;
+    text-align : left;
     ul {
         list-style : none;
+        padding : 0;
     }
     li {
-        padding-top : 15px;
-        padding-bottom : 15px;
         cursor : pointer;
+        margin : 26px 26px 26px 26px;
     }
     #high {
         font-weight : bold;
@@ -63,43 +83,36 @@ const Category = styled.div`
     }
     @media screen and (max-width: 768px) {
         position : static;
-        width : 75%;
+        width : 95%;
         margin : 0 auto;
+        margin-bottom : 10px;
         font-size : 12px;
         overflow : hidden;
         ul {
             display: flex;
             justify-content: space-around;
-            padding-left : 0px;
         }
         li {
-            padding-top : 0;
-            padding-bottom : 0;
+            margin : 0;
         }
     }
 `;
 
 const ImgWrap = styled.div`
-    position : absolute;
-    right : 0;
-    width : 75%;
+    display : inline-block;
+    position : relative;
+    width : 76%;
     text-align : center;
     @media screen and (max-width: 768px) {
-        position : static;
-        width : 100%;
+        width : 95%;
     }
-    #main-slide-wrapper {
-    }
-    #main-slide {
-        width : 70%;
-        margin : 0 auto;
-        overflow : hidden;
-    }
-    #subslide {
-        cursor : pointer;
-    }
-    h2 {
-        margin-top : 0;
+`;
+
+const SlideWrap = styled.div`
+    display : inline-block;
+    width : 80%;
+    @media screen and (max-width: 768px) {
+        width : 90%;
     }
 `;
 
@@ -110,25 +123,30 @@ const PrevButton = styled.img`
     transform : translateY(-50%);
     width : 30px;
     cursor : pointer;
+    @media screen and (max-width: 768px) {
+        width : 10px;
+    }
 `;
 
 const NextButton = styled.img`
-    position : absolute;
-    top : 50%;
+    position : absolute; 
+    top : 50%;  
     right : 0;
     transform : translateY(-50%);
     width : 30px;
     cursor : pointer;
+    @media screen and (max-width: 768px) {
+        width : 10px;
+    }
 `;
 
 const Img = styled.img`
-    border : 3px solid white;
+    border : 2px solid white;
 `;
 
-const H2 = styled.h2`
-    @media screen and (max-width: 768px) {
-        padding-top : 25px;
-    }
+const Hr = styled.hr`
+  width : 250px;
+  display : block;
 `;
 
 function Space() {
@@ -165,7 +183,6 @@ function Space() {
     const onClickNext = useCallback((ref) => () => ref.current.slickNext(), []);
 
     const [clickedCate, setClickedCate] = useState([high1,high2,high3,high4,high5,high6]);
-    const [title, setTitle] = useState('하이파티션');
 
     var cate = document.getElementsByClassName('cate');
     const categoryClick = (e) => {
@@ -194,40 +211,40 @@ function Space() {
         else {
             setClickedCate([other1,other2,other3,other4,other5]);
         }
-        setTitle(clicked.innerHTML);
     }
     return (
         <>
             <Header/>
+            <Spacer/>
+            <Title><Fade left><Hr/></Fade><Fade delay={400}>공간</Fade><Fade right><Hr/></Fade></Title>
+            <Fade delay={700}>
             <Wrapper>
-            <Category>
-                <ul>
-                    <li className="cate" id="high" onClick={categoryClick}>하이파티션</li>
-                    <li className="cate" id="low" onClick={categoryClick}>로우파티션</li>
-                    <li className="cate" id="flat" onClick={categoryClick}>평상형</li>
-                    <li className="cate" id="room" onClick={categoryClick}>스터디룸(4인/6인)</li>
-                    <li className="cate" id="cafe" onClick={categoryClick}>카페존</li>
-                    <li className="cate" id="other" onClick={categoryClick}>기타</li>
-                </ul>
-            </Category>
-            <ImgWrap>
-            <H2>{title}</H2>
-            <div id="main-slide-wrapper">
-                <div id="main-slide">
-                    <Slick ref={mainSlickRef} asNavFor={pagingSlick} {...mainSettings}>
-                        {clickedCate.map((first, index) => <Img src={first} key={index}/>)}
-                    </Slick>
-                </div>
-                <PrevButton src={leftarrow} onClick={onClickPrev(mainSlickRef)}/>
-                <NextButton src={rightarrow} onClick={onClickNext(mainSlickRef)}/>
-            </div>
-            <div id="subslide">
-                <Slick ref={pagingSlickRef} asNavFor={mainSlick} {...pagingSettings}>
-                    {clickedCate.map((first, index) => <Img src={first} key={index}/>)}
-                </Slick>
-            </div>
-            </ImgWrap>
+                <Div>
+                    <Category>
+                    <ul>
+                        <li className="cate" id="high" onClick={categoryClick}>하이파티션</li>
+                        <li className="cate" id="low" onClick={categoryClick}>로우파티션</li>
+                        <li className="cate" id="flat" onClick={categoryClick}>평상형</li>
+                        <li className="cate" id="room" onClick={categoryClick}>스터디룸(4인/6인)</li>
+                        <li className="cate" id="cafe" onClick={categoryClick}>카페존</li>
+                        <li className="cate" id="other" onClick={categoryClick}>기타</li>
+                    </ul>
+                    </Category>
+                    <ImgWrap>
+                        <SlideWrap>
+                            <Slick ref={mainSlickRef} asNavFor={pagingSlick} {...mainSettings}>
+                                {clickedCate.map((first, index) => <Img src={first} key={index}/>)}
+                            </Slick>
+                            <Slick ref={pagingSlickRef} asNavFor={mainSlick} {...pagingSettings}>
+                                {clickedCate.map((first, index) => <Img src={first} key={index}/>)}
+                            </Slick>
+                        </SlideWrap>
+                        <PrevButton src={leftarrow} onClick={onClickPrev(mainSlickRef)}/>
+                        <NextButton src={rightarrow} onClick={onClickNext(mainSlickRef)}/>
+                    </ImgWrap>
+                </Div>
             </Wrapper>
+            </Fade>
             <Footer/>
         </>
     );

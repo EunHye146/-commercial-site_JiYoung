@@ -30,10 +30,6 @@ const Form = styled.form`
     }
 `;
 
-const Input = styled.input`
-    margin : 8px;
-`;
-
 const Button = styled.button`
     margin-top : 10px;
     color : gray;
