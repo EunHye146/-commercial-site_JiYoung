@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Join from  '../../pages/Join';
+import JoinModal from  '../join/JoinModal';
 
 const Div = styled.div`
     position : fixed;
@@ -43,7 +43,7 @@ function JoinBanner() {
     return (
         <>
             <Div onClick={openModal}>가맹문의</Div>
-            { showModal && <Join closeModal={closeModal}/>}
+            { showModal && <JoinModal closeModal={closeModal}/>}
         </>
     );
 }
