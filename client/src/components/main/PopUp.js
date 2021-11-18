@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     position : absolute;
     top : 100px;
     left : 100px;
-    z-index : 1000;
+    z-index : 900;
     background : white;
     border-radius : 5px;
     @media screen and (max-width: 768px) {

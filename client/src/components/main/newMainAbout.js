@@ -30,6 +30,9 @@ const DivWrap = styled.div`
     background : black;
     color : white;
     margin : 10px;
+    @media screen and (max-width: 768px) {
+        width : 350px;
+    }
 `;
 
 const Div = styled.div`

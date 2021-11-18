@@ -11,11 +11,11 @@ let template_id = process.env.REACT_APP_TEMPLATE_ID;
 let user_id = process.env.REACT_APP_USER_ID;
 
 const Background = styled.div`
-    position : absolute;
+    position : fixed;
     top : 0;
     left : 0;
     width : 100%;
-    height : 2500px;
+    height : 100%;
     z-index : 999;
     background: rgba(0, 0, 0, 0.6);
 `;

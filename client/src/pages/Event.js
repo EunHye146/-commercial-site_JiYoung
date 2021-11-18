@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
 import styled from 'styled-components';
-import Responsive from '../components/common/Responsive';
+import Fade from 'react-reveal/Fade';
+import { Link } from 'react-router-dom';
 
 const Spacer = styled.div`
   height : 3.5rem;
@@ -16,53 +16,99 @@ const Title = styled.div`
     text-align : center;
 `;
 
-const Wrapper = styled(Responsive)`
+const Wrapper = styled.div`
     margin-top : 45px;
+    text-align : center;
+`;
+
+const Hr = styled.hr`
+  width : 250px;
+  display : block;
+`;
+
+const PostWrap = styled.div`
+  display : inline-block;
+  width : 80%;
+  text-align : left;
+  margin-bottom : 45px;
+  @media screen and (max-width: 768px) {
+    width : 90%;
+    text-algin : center;
+  }
+`;
+
+const Posts = styled(Link)`
+  display : inline-block;
+  width : 300px;
+  border-radius : 10px;
+  margin : 10px;
+  padding : 20px;
+  background : gray;
+  cursor: pointer;
+  text-decoration: none;
+  color : black;
+  @media screen and (max-width: 768px) {
+    width : 90%;
+    margin : 10px 0px 10px 0px;
+  }
+`;
+
+const PostTitle = styled.div`
+  font-size : 18px;
+  margin-top : 10px;
+  text-align : left;
+`;
+
+const PostImg = styled.img`
+  width : 100%;
+  height : 300px;
+  background : red;
+`;
+
+const WhiteSpace = styled.div`
+  height : 300px;
+`;
+
+const NoCont = styled.div`
+  font-size : 15px;
+  height : 400px;
+  margin-top : 100px;
 `;
 
 function Event() {
-    const [users, setUsers] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [posts, setPosts] = useState([]);
+
+  const callApi = async () => {
+    const response = await fetch('/post');
+    const body = await response.json();
+    return body;
+  }
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-        setError(null);
-        setUsers(null);
-        // loading 상태를 true 로 바꿉니다.
-        setLoading(true);
-        const response = await axios.get(
-          'http://localhost:5000/api/events'
-        );
-        setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
-      } catch (e) {
-        setError(e);
-      }
-      setLoading(false);
-    };
+    callApi()
+    .then(res => setPosts(res))
+    .catch(err => console.log(err));
+  },[])
 
-    fetchUsers();
-  }, []);
-
-  if (loading) return <div>로딩중..</div>;
-  if (error) return <div>에러가 발생했습니다</div>;
-  if (!users) return null;
     return (
         <>
             <Header/>
             <Spacer/>
-            <Title>EVENT</Title>
+            <Title><Fade left><Hr/></Fade><Fade delay={400}>EVENT</Fade><Fade right><Hr/></Fade></Title>
+            <Fade delay={500}>
             <Wrapper>
-            <ul>
-                {users.map(user => (
-                    <li key={user.id}>
-                        <img src={user.img}/>
-                    </li>
-                ))}
-            </ul>
+              <PostWrap>
+                {posts.map(post => 
+                  <Posts to={`/post/${post._id}`}>
+                    <PostImg/>
+                    <PostTitle>{post.title}</PostTitle>
+                  </Posts>
+                )}
+                {posts.length < 4 && posts.length > 0 && <WhiteSpace/>}
+                {posts.length === 0 && <NoCont>등록된 게시물이 없습니다.</NoCont>}
+              </PostWrap>
             </Wrapper>
+            </Fade>
             <Footer/>
         </>
     );

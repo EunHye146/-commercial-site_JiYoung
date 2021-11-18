@@ -1,27 +1,30 @@
-var express = require('express');
+import express from 'express';
 var app = express();
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var api = require('./routes/index');
- 
-//conncet to mongodb server
-var db = mongoose.connection;
-db.on('error', console.error);
-db.once('open', function(){
-  console.log('connected mongodb server!');
+import dotenv from 'dotenv';
+dotenv.config();
+import post from './post/index.js';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
+
+var { PORT, MONGO_URI } = process.env;
+
+mongoose
+.connect(MONGO_URI)
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch(e => {
+    console.error(e);
 });
- 
-mongoose.connect('mongodb://localhost/test');
- 
-const port = 5000;
- 
-//bodyParser setting
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+
 app.use(bodyParser.json());
-app.use('/api', api);
- 
-app.listen(port, () => {
-  console.log('Express is listening on port', port);
+
+app.use('/post', post);
+
+app.use(cors());
+
+
+app.listen(PORT, function() {
+    console.log('Example App listening on port ' + PORT);
 });

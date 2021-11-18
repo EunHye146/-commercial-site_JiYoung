@@ -29,11 +29,11 @@ const NaverImg = styled.img`
   cursor : pointer;
 `;
 
+
 const NewHeader = () => {
     const [menuToggle, setMenuToggle] = useState(false);
 
     const CkMenuToggle = () => {
-        //document.getElementById('toggleSns').style.display = 'none';
         if (menuToggle) {
             setMenuToggle(!menuToggle);
             setTimeout(() => {
@@ -51,6 +51,7 @@ const NewHeader = () => {
     const openBlog = () => {
         window.open('https://map.naver.com/v5/search/%EC%A1%B0%EC%95%84%EC%8A%A4%ED%84%B0%EB%94%94/place/1336064146?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=14109386.6864605,4541731.1410773,15,0,0,0,dh', '_blank')
     }
+
 
     return(
         <>
