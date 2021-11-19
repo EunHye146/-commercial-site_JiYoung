@@ -47,6 +47,11 @@ const Button = styled.button`
 `;
 
 function Admin({ history }) {
+    const user = window.sessionStorage.getItem('id');
+    if (user) {
+        history.push('/');
+    }
+    
     const id = "jiyoung";
     const password = "1111";
 

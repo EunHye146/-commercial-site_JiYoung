@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
+import User from '../components/common/User';
 import styled from 'styled-components';
 import Slick from 'react-slick';
 import Fade from 'react-reveal/Fade';
@@ -215,6 +216,7 @@ function Space() {
     return (
         <>
             <Header/>
+            <User/>
             <Spacer/>
             <Title><Fade left><Hr/></Fade><Fade delay={400}>공간</Fade><Fade right><Hr/></Fade></Title>
             <Fade delay={700}>

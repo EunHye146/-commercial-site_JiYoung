@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
+import User from '../components/common/User';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom';
@@ -17,7 +18,7 @@ const Title = styled.div`
 `;
 
 const Wrapper = styled.div`
-    margin-top : 45px;
+    margin-top : 25px;
     text-align : center;
 `;
 
@@ -28,41 +29,28 @@ const Hr = styled.hr`
 
 const PostWrap = styled.div`
   display : inline-block;
-  width : 80%;
+  width : 75%;
   text-align : left;
   margin-bottom : 45px;
   @media screen and (max-width: 768px) {
-    width : 90%;
-    text-algin : center;
+    width : 95%;
   }
 `;
 
-const Posts = styled(Link)`
-  display : inline-block;
-  width : 300px;
-  border-radius : 10px;
-  margin : 10px;
-  padding : 20px;
-  background : gray;
-  cursor: pointer;
+const PostLink = styled(Link)`
+  display : block;
   text-decoration: none;
   color : black;
-  @media screen and (max-width: 768px) {
-    width : 90%;
-    margin : 10px 0px 10px 0px;
+`;
+
+const Table = styled.table`
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  font-size : 13px;
+  th {
+    font-size : 15px;
   }
-`;
-
-const PostTitle = styled.div`
-  font-size : 18px;
-  margin-top : 10px;
-  text-align : left;
-`;
-
-const PostImg = styled.img`
-  width : 100%;
-  height : 300px;
-  background : red;
 `;
 
 const WhiteSpace = styled.div`
@@ -73,10 +61,28 @@ const NoCont = styled.div`
   font-size : 15px;
   height : 400px;
   margin-top : 100px;
+  text-align : center;
 `;
+
+const WriteButton = styled.div`
+  width : 70px;
+  padding : 10px;
+  background : green;
+  float : right;
+  text-align : center;
+  cursor : pointer;
+  margin-bottom : 10px;
+  border-radius : 5px;
+  font-size : 13px;
+  &:hover {
+    background : lightgreen;
+  }
+`;
+
 
 function Event() {
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState(window.sessionStorage.getItem('id'));
 
   const callApi = async () => {
     const response = await fetch('/post');
@@ -93,18 +99,32 @@ function Event() {
     return (
         <>
             <Header/>
+            <User/>
             <Spacer/>
-            <Title><Fade left><Hr/></Fade><Fade delay={400}>EVENT</Fade><Fade right><Hr/></Fade></Title>
+            <Title><Fade left><Hr/></Fade><Fade delay={400}>공지사항</Fade><Fade right><Hr/></Fade></Title>
             <Fade delay={500}>
             <Wrapper>
               <PostWrap>
-                {posts.map(post => 
-                  <Posts to={`/post/${post._id}`}>
-                    <PostImg/>
-                    <PostTitle>{post.title}</PostTitle>
-                  </Posts>
-                )}
-                {posts.length < 4 && posts.length > 0 && <WhiteSpace/>}
+              {user && <WriteButton>글작성</WriteButton>}
+                <Table>
+                <thead>
+                  <tr style={{borderBottom : '1px solid gray'}}>
+                    <th style={{width:'15%', padding : '20px'}}>번호</th>
+                    <th style={{width:'70%'}}>제목</th>
+                    <th style={{width:'15%'}}>작성일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {posts.map((post, index) => 
+                    <tr style={{borderBottom : '1px solid lightgray'}}>
+                      <td style={{padding : '20px'}}>{posts.length-index}</td>
+                      <td><PostLink to={`/post/${post._id}`}>{post.title}</PostLink></td>
+                      <td>{post.publishedDate.substring(0,10)}</td>
+                    </tr>
+                  )}
+                </tbody> 
+                </Table>
+                {posts.length < 6 && posts.length > 0 && <WhiteSpace/>}
                 {posts.length === 0 && <NoCont>등록된 게시물이 없습니다.</NoCont>}
               </PostWrap>
             </Wrapper>

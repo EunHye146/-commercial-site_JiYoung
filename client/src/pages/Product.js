@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
+import User from '../components/common/User';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import chargeImg1 from '../imgs/product/charge1.jpeg';
@@ -46,6 +47,7 @@ function Product() {
     return (
         <>
             <Header/>
+            <User/>
             <Spacer/>
             <Title><Fade left><Hr/></Fade><Fade delay={400}>이용요금</Fade><Fade right><Hr/></Fade></Title>
             <Fade delay={700}>

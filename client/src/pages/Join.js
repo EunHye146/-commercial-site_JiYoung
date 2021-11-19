@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
+import User from '../components/common/User';
 import styled from 'styled-components';
 import emailjs from 'emailjs-com';
 import Fade from 'react-reveal/Fade';
@@ -133,6 +134,7 @@ function Join() {
     return (
         <>
             <Header/>
+            <User/>
             <Spacer/>
             <Title><Fade left><Hr/></Fade><Fade delay={400}>가맹문의</Fade><Fade right><Hr/></Fade></Title>
             <Fade delay={500}>

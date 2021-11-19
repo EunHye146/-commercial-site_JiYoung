@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/common/NewHeader';
 import Footer from '../components/common/Footer';
+import User from '../components/common/User';
 import ClickedImg from '../components/Space/ClickedImg';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
@@ -149,6 +150,7 @@ function Space() {
     return (
         <>
             <Header/>
+            <User/>
             <Spacer/>
             <Title><Fade left><Hr1/></Fade><Fade delay={400}>공간</Fade><Fade right><Hr1/></Fade></Title>
             <Fade delay={700}>

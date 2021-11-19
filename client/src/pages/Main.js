@@ -7,6 +7,7 @@ import Footer from '../components/common/Footer';
 import styled from 'styled-components';
 import JoinBanner from '../components/main/JoinBanner';
 import PopUp from '../components/main/PopUp';
+import User from '../components/common/User';
 
 const Spacer  = styled.div`
     height : 100px;
@@ -38,6 +39,7 @@ function Main() {
     return (
         <>
             <Header/>
+            <User/>
             {showPopUp && <PopUp closePopUp={closePopUp} checkedClose={checkedClose}/>}
             <MainCont/>
             <Spacer/>
