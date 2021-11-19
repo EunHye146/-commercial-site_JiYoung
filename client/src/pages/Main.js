@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/common/NewHeader';
+import Header from '../components/common/Header';
 import MainCont from '../components/main/MainCont';
 import NewMainAbout from '../components/main/NewMainAbout';
 import MainSpaces from '../components/main/MainSpaces';

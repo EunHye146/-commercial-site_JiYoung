@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/common/NewHeader';
+import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import User from '../components/common/User';
 import styled from 'styled-components';
@@ -64,13 +64,14 @@ const NoCont = styled.div`
   text-align : center;
 `;
 
-const WriteButton = styled.div`
+const WriteButton = styled(Link)`
   width : 70px;
   padding : 10px;
   background : green;
   float : right;
   text-align : center;
-  cursor : pointer;
+  text-decoration: none;
+  color : black;
   margin-bottom : 10px;
   border-radius : 5px;
   font-size : 13px;
@@ -80,9 +81,9 @@ const WriteButton = styled.div`
 `;
 
 
-function Event() {
+function Notice() {
   const [posts, setPosts] = useState([]);
-  const [user, setUser] = useState(window.sessionStorage.getItem('id'));
+  const user = window.sessionStorage.getItem('id');
 
   const callApi = async () => {
     const response = await fetch('/post');
@@ -105,7 +106,7 @@ function Event() {
             <Fade delay={500}>
             <Wrapper>
               <PostWrap>
-              {user && <WriteButton>글작성</WriteButton>}
+              {user && <WriteButton to='/write'>글작성</WriteButton>}
                 <Table>
                 <thead>
                   <tr style={{borderBottom : '1px solid gray'}}>
@@ -118,7 +119,7 @@ function Event() {
                   {posts.map((post, index) => 
                     <tr style={{borderBottom : '1px solid lightgray'}}>
                       <td style={{padding : '20px'}}>{posts.length-index}</td>
-                      <td><PostLink to={`/post/${post._id}`}>{post.title}</PostLink></td>
+                      <td><PostLink to={`/notice/${post._id}`}>{post.title}</PostLink></td>
                       <td>{post.publishedDate.substring(0,10)}</td>
                     </tr>
                   )}
@@ -134,4 +135,4 @@ function Event() {
     );
 }
 
-export default Event;
+export default Notice;

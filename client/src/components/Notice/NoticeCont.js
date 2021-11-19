@@ -1,20 +1,145 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
+import User from '../common/User';
 import styled from 'styled-components';
-import Responsive from '../common/Responsive';
+import Fade from 'react-reveal/Fade';
+import { Link, withRouter } from 'react-router-dom';
+import axios from 'axios';
 
-const Wrapper = styled(Responsive)`
-    background : lightgray;
-    height : 500px;
-    margin-bottom : 30px;
+const Spacer = styled.div`
+  height : 3.5rem;
 `;
 
-function NoticeCont() {
+const Wrapper = styled.div`
+    margin-top : 80px;
+    margin-bottom : 45px;
+    text-align : center;
+`;
+
+const PostWrap = styled.div`
+    display : inline-block;
+    width : 80%;
+    text-align : left;
+`;
+
+const Head = styled.div`
+    position : relative;
+`;
+
+const Title = styled.div`
+    font-size : 23px;
+    font-weight : bold;
+    margin-bottom : 10px;
+    padding-left : 50px;
+`;
+
+const Cont = styled.div`
+    font-size : 13px;
+    letter-spacing : 1px;
+    padding-left: 50px;
+    padding-right : 50px;
+`;
+
+const Date = styled.div`
+    display : inline-block;
+    font-size : 12px;
+    padding-left : 50px;
+`;
+
+const Hr = styled.hr`
+    color : lightgray;
+    border-width : 1px 0px 0px 0px;
+    opacity : 0.5;
+    margin-bottom : 70px;
+`;
+
+const ButtonWrap = styled.div`
+    position : absolute;
+    bottom : 0;
+    right : 0;
+`;
+
+const Button = styled.div`
+    display : inline-block;
+    width : 50px;
+    padding : 7px;
+    margin-left : 5px;
+    background : gray;
+    cursor : pointer;
+    font-size : 13px;
+    text-decoration: none;
+    color : black;
+    text-align : center;
+    border-radius : 5px;
+    &:hover {
+        background : lightgray;
+    }
+`;
+
+const ListButton = styled(Link)`
+    display : inline-block;
+    width : 50px;
+    padding : 7px;
+    margin-left : 5px;
+    background : gray;
+    cursor : pointer;
+    font-size : 13px;
+    text-decoration: none;
+    color : black;
+    text-align : center;
+    border-radius : 5px;
+    &:hover {
+        background : lightgray;
+    }
+`;
+
+function NoticeCont({match, history}) {
+    const [post, setPost] = useState([]);
+    const user = window.sessionStorage.getItem('id');
+
+    const callApi = async () => {
+        const response = await fetch(`/post/${match.params.id}`);
+        const body = await response.json();
+        return body;
+      }
     
+      useEffect(() => {
+        callApi()
+        .then(res => setPost(res))
+        .catch(err => console.log(err));
+      },[]);
+
+      const removePost = () => {
+        if (window.confirm("정말 삭제하시겠습니까?")) {
+            axios.delete(`/post/${match.params.id}`);
+            alert('해당글이 삭제되었습니다.');
+            history.push('/notice');
+        } else {
+            return false;
+        }
+      }
     return (
         <>
-       <Wrapper>notice</Wrapper>
+            <Header/>
+            <User/>
+            <Spacer/>
+            <Fade delay={500}>
+            <Wrapper>
+                <PostWrap>
+                    <Head>
+                    <Title>{post.title}</Title>
+                    <Date>작성일 : {(post.publishedDate+'').substring(0,10)}</Date>
+                    <ButtonWrap>{user && <><Button>수정</Button><Button onClick={removePost}>삭제</Button></>}<ListButton to='/notice'>목록</ListButton></ButtonWrap>
+                    </Head>
+                <Hr/>
+                <Cont>{post.body}</Cont>
+                </PostWrap>
+            </Wrapper>
+            </Fade>
+            <Footer/>
         </>
     );
 }
 
-export default NoticeCont;
+export default withRouter(NoticeCont);

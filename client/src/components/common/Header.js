@@ -1,50 +1,97 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Navbar from './Navbar';
 import styled from 'styled-components';
-import Responsive from './Responsive';
+import './Header.css';
+import menu_icon from '../../imgs/main/menu_icon.png';
+import logo from '../../imgs/main/logo.png';
+import naver_icon from '../../imgs/main/naver_icon.png';
+import Slide from 'react-reveal/Slide';
 
-const Wrapper = styled(Responsive)`
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  .logo {
-    font-size: 1.125rem;
-    font-weight: 800;
-    letter-spacing: 2px;
+const LinkTo = styled(Link)`
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+  &:hover{
+    color : #e8c74d;
   }
-  .right {
-    margin-left: auto;
-  }
+`
+
+const LogoImg = styled.img`
+  height : 3rem;
 `;
 
-const HeaderBlock = styled.div`
-  position: fixed;
-  width: 100%;
-  background: lightgray;
-  z-index : 100;
+const NaverImg = styled.img`
+  width : 40px;
+  cursor : pointer;
 `;
 
-const Logo = styled(Link)`
-    text-decoration : none;
-    color : gray;
-`;
 
-const Header = () => {
+const NewHeader = () => {
+    const [menuToggle, setMenuToggle] = useState(false);
+
+    const CkMenuToggle = () => {
+        if (menuToggle) {
+            setMenuToggle(!menuToggle);
+            setTimeout(() => {
+                document.getElementById('toggleMenus').style.display = 'none';
+              }, 720);
+        } 
+        else {
+            document.getElementById('toggleMenus').style.display = 'block';
+            setMenuToggle(!menuToggle);
+        }
+    }
+
+    const openBlog = () => {
+        window.open('https://map.naver.com/v5/search/%EC%A1%B0%EC%95%84%EC%8A%A4%ED%84%B0%EB%94%94/place/1336064146?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=14109386.6864605,4541731.1410773,15,0,0,0,dh', '_blank')
+    }
+
+
     return(
         <>
-        <HeaderBlock>
-        <Wrapper>
-        <span className="logo">
-        <Logo to='/'>회사로고</Logo>
-        </span>
-        <span className="right">
-        <Navbar/>
-        </span>
-        </Wrapper>
-        </HeaderBlock>
+        <div className="header">
+            <div className="navBar_toggleBtn"><img className="menu_icon_img" src={menu_icon} alt="메뉴 드롭 아이콘" onClick={CkMenuToggle}/></div>
+            <div><Link to="/"><LogoImg src={logo}/></Link></div>
+            <ul className="navBar_menus">
+                <li className="navBar_menus_menu">
+                    <LinkTo to="/space">공간</LinkTo>
+                </li>
+                <li className="navBar_menus_menu">
+                    <LinkTo to="/location">위치</LinkTo>
+                </li>
+                <li className="navBar_menus_menu">
+                    <LinkTo to="/product">이용요금</LinkTo>
+                </li>
+                <li className="navBar_menus_menu">
+                    <LinkTo to="/notice">공지사항</LinkTo>
+                </li>
+                <li className="navBar_menus_menu">
+                    <LinkTo to="/join">가맹문의</LinkTo>
+                </li>
+            </ul>
+            <NaverImg src={naver_icon} onClick={openBlog}/>
+        </div>
+         <Slide top when={menuToggle}>
+            <ul id="toggleMenus">
+                <li className="toggleMenus_menu">
+                    <LinkTo to="/space">공간</LinkTo>
+                </li>
+                <li className="toggleMenus_menu">
+                    <LinkTo to="/location">위치</LinkTo>
+                </li>
+                <li className="toggleMenus_menu">
+                    <LinkTo to="/product">이용요금</LinkTo>
+                </li>
+                <li className="toggleMenus_menu">
+                    <LinkTo to="/notice">공지사항</LinkTo>
+                </li>
+                <li className="toggleMenus_menu">
+                    <LinkTo to="/join">가맹문의</LinkTo>
+                </li>
+            </ul>
+        </Slide>
         </>
     )
 }
 
-export default withRouter(Header);
+export default withRouter(NewHeader);
