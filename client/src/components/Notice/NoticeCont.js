@@ -34,11 +34,15 @@ const Title = styled.div`
     padding-left : 50px;
 `;
 
-const Cont = styled.div`
+const Pre = styled.pre`
     font-size : 13px;
+    font-family : 'GmarketSansTTFMedium';
     letter-spacing : 1px;
     padding-left: 50px;
     padding-right : 50px;
+    line-height : 1.4;
+    height : 500px;
+    overflow : auto;
 `;
 
 const Date = styled.div`
@@ -77,7 +81,7 @@ const Button = styled.div`
     }
 `;
 
-const ListButton = styled(Link)`
+const ButtonTo = styled(Link)`
     display : inline-block;
     width : 50px;
     padding : 7px;
@@ -130,10 +134,10 @@ function NoticeCont({match, history}) {
                     <Head>
                     <Title>{post.title}</Title>
                     <Date>작성일 : {(post.publishedDate+'').substring(0,10)}</Date>
-                    <ButtonWrap>{user && <><Button>수정</Button><Button onClick={removePost}>삭제</Button></>}<ListButton to='/notice'>목록</ListButton></ButtonWrap>
+                    <ButtonWrap>{user && <><ButtonTo to={`/update/${post._id}`}>수정</ButtonTo><Button onClick={removePost}>삭제</Button></>}<ButtonTo to='/notice'>목록</ButtonTo></ButtonWrap>
                     </Head>
                 <Hr/>
-                <Cont>{post.body}</Cont>
+                <Pre>{post.body}</Pre>
                 </PostWrap>
             </Wrapper>
             </Fade>

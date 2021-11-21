@@ -8,6 +8,7 @@ import Product from '../pages/Product';
 import Notice from '../pages/Notice';
 import NoticeCont from '../components/Notice/NoticeCont';
 import Write from '../components/Notice/Write';
+import Update from '../components/Notice/Update';
 import Admin from '../pages/Admin';
 //import Space2 from '../pages/Space';
 
@@ -23,6 +24,7 @@ const Routers = () => {
         <Route component={Notice} path='/notice' exact/>
         <Route component={NoticeCont} path='/notice/:id' exact/>
         <Route component={Write} path='/write' />
+        <Route component={Update} path='/update/:id' />
         <Route component={Admin} path='/admin'/>
         </BrowserRouter>
     );

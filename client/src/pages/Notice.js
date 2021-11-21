@@ -54,7 +54,7 @@ const Table = styled.table`
 `;
 
 const WhiteSpace = styled.div`
-  height : 300px;
+  height : 350px;
 `;
 
 const NoCont = styled.div`

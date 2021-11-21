@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import User from '../common/User';
@@ -62,7 +62,7 @@ const Body = styled.div`
 
 const Button = styled.input`
     float : right;
-    width : 70px;
+    width : 80px;
     border : none;
     padding : 10px;
     font-size : 13px;
@@ -74,15 +74,35 @@ const Button = styled.input`
     }
 `;
 
-function Write({ history }) {
+function Update({ history, match }) {
     const user = window.sessionStorage.getItem('id');
+    const [post, setPost] = useState([]);
 
     if (!user) {
         alert('관리자 권한 페이지입니다.');
         history.push('/notice');
     }
 
-    const upload = () => {
+    const callApi = async () => {
+        const response = await fetch(`/post/${match.params.id}`);
+        const body = await response.json();
+        return body;
+    }
+    
+    useEffect(() => {
+        callApi()
+        .then(res => setPost(res))
+        .catch(err => console.log(err));
+    },[]);
+
+    const handleChange = (e) => {
+        if (e.target.id === 'title')
+            setPost({ title: e.target.value });
+        if (e.target.id === 'bodycont')
+            setPost({ body: e.target.value });
+    }
+
+    const update = () => {
         const title = document.getElementById('title').value;
         const bodycont = document.getElementById('bodycont').value;
 
@@ -92,10 +112,10 @@ function Write({ history }) {
         }
 
         axios
-        .post('/post', body)
+        .patch(`/post/${match.params.id}`, body)
         .catch(err => console.log(err));
         
-        alert('게시물이 작성되었습니다.');
+        alert('게시물이 수정되었습니다.');
         history.push('/notice');
     }
     return (
@@ -106,11 +126,11 @@ function Write({ history }) {
             <Fade delay={500}>
             <Wrapper>
             <PostWrap>
-                <form onSubmit={upload}>
-                    <Title>제목 <input type="text" id="title" required/></Title>
+                <form onSubmit={update}>
+                    <Title>제목 <input type="text" id="title" value={post.title} onChange={handleChange} required/></Title>
                     <Hr/>
-                    <Body>내용<br/><textarea id="bodycont" required/></Body>
-                    <Button type="submit" value="올리기"/>
+                    <Body>내용<br/><textarea id="bodycont" value={post.body} onChange={handleChange} required/></Body>
+                    <Button type="submit" value="수정하기"/>
                 </form>
             </PostWrap>
             </Wrapper>
@@ -120,4 +140,4 @@ function Write({ history }) {
     );
 }
 
-export default withRouter(Write);
+export default withRouter(Update);
