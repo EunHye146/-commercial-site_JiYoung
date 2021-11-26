@@ -7,7 +7,7 @@
 * Frontend
   * React
 * Backend
-  * Nodejs
+  * Node.js
   * Express
 * DB
   * MongoDB
